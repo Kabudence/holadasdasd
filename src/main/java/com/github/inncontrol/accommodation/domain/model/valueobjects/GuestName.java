@@ -1,4 +1,4 @@
-package com.github.inncontrol.accommodation.domain.valueobjects;
+package com.github.inncontrol.accommodation.domain.model.valueobjects;
 
 import jakarta.persistence.Embeddable;
 
