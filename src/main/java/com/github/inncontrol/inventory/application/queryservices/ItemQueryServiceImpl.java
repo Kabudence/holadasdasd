@@ -1,7 +1,7 @@
 package com.github.inncontrol.inventory.application.queryservices;
 
 
-import com.github.inncontrol.inventory.domain.model.aggregates.Items;
+import com.github.inncontrol.inventory.domain.model.aggregates.Inventory;
 import com.github.inncontrol.inventory.domain.model.queries.GetAllItems;
 import com.github.inncontrol.inventory.domain.model.queries.GetItemById;
 import com.github.inncontrol.inventory.domain.model.queries.GetItemByProviderId;
@@ -22,17 +22,17 @@ public class ItemQueryServiceImpl implements ItemQueryService {
     }
 
     @Override
-    public List<Items> handle(GetAllItems query){
+    public List<Inventory> handle(GetAllItems query){
         return itemRepository.findAll();
     }
 
     @Override
-    public Optional<Items> handle(GetItemById query){
+    public Optional<Inventory> handle(GetItemById query){
         return itemRepository.GetItemById(query.ItemId());
     }
 
     @Override
-    public Optional<Items>handle(GetItemByProviderId query){
+    public Optional<Inventory>handle(GetItemByProviderId query){
         return itemRepository.GetItemByProviderId(query.providerId());
     }
 
