@@ -1,7 +1,13 @@
 package com.github.inncontrol.inventory.domain.model.commands;
 
-public record CreateItemsCommand(String itemTitle, String itemDescription, Integer itemQuantity, String Brand) {
-    public CreateItemsCommand{
+
+public record UpdateInventoryCommand(Long id, String itemTitle, String itemDescription, Integer itemQuantity, String Brand) {
+
+    public UpdateInventoryCommand {
+        if (id == null || id <= 0) {
+            throw new IllegalArgumentException("id must be greater than 0");
+        }
+
         if (itemTitle == null || itemTitle.isBlank()) {
             throw new IllegalArgumentException("Item's Title cannot be null or empty");
         }
@@ -14,5 +20,8 @@ public record CreateItemsCommand(String itemTitle, String itemDescription, Integ
         if (Brand == null || Brand.isBlank()) {
             throw new IllegalArgumentException("Item's Brand cannot be null or empty");
         }
+
+
     }
+
 }

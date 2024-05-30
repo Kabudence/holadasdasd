@@ -7,10 +7,8 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ItemRepository extends JpaRepository<Inventory, Long> {
-Optional<Inventory> GetItemById(Long ItemId);
-List<Inventory> GetAllItems();
-Optional<Inventory> GetItemByProviderId(Long ProviderId);
-boolean existsByItemName(String ItemName);
-
-
+    Optional<Inventory> findById(Long id);
+    List<Inventory> findAll();
+    List<Inventory> findAllByBrand(String brand);
+    boolean existsByProductTitle(String itemName);
 }

@@ -1,6 +1,5 @@
 package com.github.inncontrol.inventory.domain.model.aggregates;
 
-
 import com.github.inncontrol.inventory.domain.model.commands.CreateItemsCommand;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -9,7 +8,6 @@ import org.springframework.data.domain.AbstractAggregateRoot;
 @Getter
 @Entity
 public class Inventory extends AbstractAggregateRoot<Inventory> {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,25 +23,27 @@ public class Inventory extends AbstractAggregateRoot<Inventory> {
     private Integer productQuantity;
 
     @Column(nullable = false)
-    private String Brand;
+    private String brand;
 
 
 
     protected Inventory() {}
 
-    public Inventory(CreateItemsCommand command){
+
+
+
+    public Inventory(CreateItemsCommand command) {
         this.productTitle = command.itemDescription();
         this.productDescription = command.itemTitle();
         this.productQuantity = command.itemQuantity();
-        this.Brand = command.Brand();
-    }
+        this.brand = command.Brand();
+         }
 
-    public void addItem(Integer quantity) {
-        this.productQuantity += quantity;
+    public Inventory updateInformation(String title, String description, Integer quantity, String brand) {
+        this.productTitle = title;
+        this.productDescription = description;
+        this.productQuantity = quantity;
+        this.brand = brand;
+        return this;
     }
-
-    public void substractItem(Integer quantity) {
-        this.productQuantity -= quantity;
-    }
-
 }
