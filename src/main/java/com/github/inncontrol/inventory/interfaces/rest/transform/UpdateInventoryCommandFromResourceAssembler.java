@@ -1,8 +1,6 @@
 package com.github.inncontrol.inventory.interfaces.rest.transform;
 
-import com.github.inncontrol.inventory.domain.model.commands.CreateItemsCommand;
 import com.github.inncontrol.inventory.domain.model.commands.UpdateInventoryCommand;
-import com.github.inncontrol.inventory.interfaces.rest.resources.InventoryResource;
 import com.github.inncontrol.inventory.interfaces.rest.resources.UpdateInventoryResource;
 
 public class UpdateInventoryCommandFromResourceAssembler {
