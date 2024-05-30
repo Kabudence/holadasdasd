@@ -31,4 +31,5 @@ public record SalaryEmployee(Double salary,CurrencyStatus currency) {
         return this.salary*12;
     }
 
+
 }

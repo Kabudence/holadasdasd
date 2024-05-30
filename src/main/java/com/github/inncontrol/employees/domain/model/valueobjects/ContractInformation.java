@@ -9,11 +9,11 @@ import java.util.Date;
 
 @Embeddable
 public record ContractInformation(
-        Date  InitiationDate,
-        Date TerminationDate
+        Date  initiationDate,
+        Date terminationDate
         ) {
     public ContractInformation {
-        if (InitiationDate.after(TerminationDate)) {
+        if (initiationDate.after(terminationDate)) {
             throw new IllegalArgumentException("Initiation date must be before termination date");
         }
     }
@@ -23,15 +23,21 @@ public record ContractInformation(
     }
 
     public Duration getTimeToTermination() {
-        return Duration.between(Instant.now(), TerminationDate.toInstant());
+        return Duration.between(Instant.now(), terminationDate.toInstant());
     }
 
     public boolean isContractActive() {
-        return Instant.now().isBefore(TerminationDate.toInstant());
+        return Instant.now().isBefore(terminationDate.toInstant());
     }
 
 
     public Duration getTimeWorked() {
-        return Duration.between(InitiationDate.toInstant(), TerminationDate.toInstant());
+        return Duration.between(initiationDate.toInstant(), terminationDate.toInstant());
     }
+    public int getMonthsWorked() {
+        Duration duration = getTimeWorked();
+        long days = duration.toDays();
+        return (int) (days / 30.44);
+    }
+
 }
