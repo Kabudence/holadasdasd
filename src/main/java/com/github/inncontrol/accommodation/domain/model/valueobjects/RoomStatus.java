@@ -1,5 +1,8 @@
 package com.github.inncontrol.accommodation.domain.model.valueobjects;
 
+import jakarta.persistence.Embeddable;
+
+@Embeddable
 public record RoomStatus(State roomState) {
     public enum State{
         Occupied,

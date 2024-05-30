@@ -7,7 +7,7 @@ public record RoomType(Type roomType){
     public enum Type{
         Standard,
         Suite,
-        Deluxe_Suite;
+        Deluxe_Suite
     }
     public RoomType(){
     this(null);
