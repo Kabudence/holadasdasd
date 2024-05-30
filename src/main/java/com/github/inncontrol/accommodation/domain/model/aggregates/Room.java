@@ -1,5 +1,6 @@
 package com.github.inncontrol.accommodation.domain.model.aggregates;
 
+import com.github.inncontrol.accommodation.domain.model.commands.CreateRoomCommand;
 import com.github.inncontrol.accommodation.domain.model.valueobjects.RoomStatus;
 import com.github.inncontrol.accommodation.domain.model.valueobjects.RoomType;
 import com.github.inncontrol.accommodation.domain.model.valueobjects.GuestName;
@@ -26,6 +27,11 @@ public class Room extends AuditableAbstractAggregateRoot<Room> {
         this.guest = new GuestName(firstName,lastName);
         this.status = new RoomStatus(RoomStatus.State.valueOf(roomState));
         this.type = new RoomType(RoomType.Type.valueOf(roomType));
+    }
+    public Room(CreateRoomCommand command) {
+        this.guest = new GuestName(command.firstName(), command.lastName());
+        this.status = new RoomStatus(RoomStatus.State.valueOf(command.Status()));
+        this.type = new RoomType(RoomType.Type.valueOf(command.type()));
     }
     public Room(){
 
