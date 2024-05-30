@@ -1,5 +1,6 @@
 package com.github.inncontrol.accommodation.domain.model.aggregates;
 
+import com.github.inncontrol.accommodation.domain.model.valueobjects.RoomStatus;
 import com.github.inncontrol.accommodation.domain.model.valueobjects.RoomType;
 import com.github.inncontrol.accommodation.domain.model.valueobjects.GuestName;
 import com.github.inncontrol.shared.domain.aggregates.AuditableAbstractAggregateRoot;
@@ -17,8 +18,14 @@ public class Room extends AuditableAbstractAggregateRoot<Room> {
     @Enumerated(EnumType.STRING)
     private RoomType type;
 
-    public Room(String firstName, String lastName, String Type){
+    @Embedded
+    @Enumerated(EnumType.STRING)
+    private RoomStatus status;
+
+    public Room(String firstName, String lastName, String roomType, String roomState){
         this.guest = new GuestName(firstName,lastName);
+        this.status = new RoomStatus(RoomStatus.State.valueOf(roomState));
+        this.type = new RoomType(RoomType.Type.valueOf(roomType));
     }
     public Room(){
 
@@ -30,5 +37,13 @@ public class Room extends AuditableAbstractAggregateRoot<Room> {
 
     public String getGuestFullName(){
         return guest.getFullName();
+    }
+
+    public String getRoomType(){
+        return type.getRoomType();
+    }
+
+    public String getRoomStatus(){
+        return status.getRoomStatus();
     }
 }
