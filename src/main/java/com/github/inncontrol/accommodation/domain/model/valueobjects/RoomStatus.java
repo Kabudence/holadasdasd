@@ -4,7 +4,7 @@ public record RoomStatus(State roomState) {
     public enum State{
         Occupied,
         Vacant,
-        In_service;
+        In_service
     }
     public RoomStatus(){
         this(null);
