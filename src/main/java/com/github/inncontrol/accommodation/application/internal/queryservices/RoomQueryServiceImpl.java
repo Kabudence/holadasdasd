@@ -5,6 +5,7 @@ import com.github.inncontrol.accommodation.domain.model.queries.GetAllRoomsQuery
 import com.github.inncontrol.accommodation.domain.model.queries.GetRoomByIdQuery;
 import com.github.inncontrol.accommodation.domain.model.queries.GetRoomByTypeQuery;
 import com.github.inncontrol.accommodation.domain.model.services.RoomQueryService;
+import com.github.inncontrol.accommodation.domain.model.valueobjects.RoomType;
 import com.github.inncontrol.accommodation.infrastructure.persistence.jpa.repositories.RoomRepository;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +27,8 @@ public class RoomQueryServiceImpl implements RoomQueryService {
 
     @Override
     public Optional<Room> handle(GetRoomByTypeQuery query){
-        return roomRepository.findByRoomType(query.roomType());
+        var enumOption = RoomType.valueOf(query.roomType());
+        return roomRepository.findByRoomType(enumOption);
     }
 
     @Override
