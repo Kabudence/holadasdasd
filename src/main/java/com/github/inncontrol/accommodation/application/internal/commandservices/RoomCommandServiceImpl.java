@@ -18,8 +18,8 @@ public class RoomCommandServiceImpl implements RoomCommandService{
     }
     @Override
     public Optional<Room> handle(CreateRoomCommand command){
-        var roomType = new RoomType(RoomType.Type.valueOf(command.type()));
-        if (roomRepository.existsByRoomType(roomType.getRoomType())){
+        var enumOption = RoomType.valueOf(command.type());
+        if (roomRepository.existsByRoomType(enumOption)){
             throw new IllegalArgumentException("Room type with " + command.type() + " already exists");
         }
         var room = new Room(command);
