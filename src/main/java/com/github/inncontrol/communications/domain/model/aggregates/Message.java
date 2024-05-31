@@ -41,14 +41,6 @@ public class Message extends AuditableAbstractAggregateRoot<Message> {
         this.sendMessage();
     }
 
-    public Message(CreateMessageCommand command) {
-        this();
-        this.sender = new ProfileIdentifier(command.senderId());
-        this.receiver = new ProfileIdentifier(command.receiverId());
-        this.content = command.content();
-        this.sendMessage();
-    }
-
     public void sendMessage() {
         this.status = MessageStatus.SEND;
         this.registerEvent(new MessageCreatedEvent(this, this.getId()));

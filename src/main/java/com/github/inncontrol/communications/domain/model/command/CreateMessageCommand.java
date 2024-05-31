@@ -7,8 +7,8 @@ package com.github.inncontrol.communications.domain.model.command;
  */
 public record CreateMessageCommand(
 
-        Long senderId,
-        Long receiverId,
+        String senderEmail,
+        String receiverEmail,
         String content
 ) {
 }

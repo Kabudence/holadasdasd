@@ -20,11 +20,21 @@ public class MessageCommandServiceImpl implements MessageCommandService {
 
     @Override
     public Optional<Message> handle(CreateMessageCommand command) {
-        return Optional.empty();
+        var sender = externalProfileService.fetchProfileIdentifierByEmail(command.senderEmail());
+        var receiver = externalProfileService.fetchProfileIdentifierByEmail(command.receiverEmail());
+        if (sender.isEmpty() || receiver.isEmpty()) {
+            throw new IllegalArgumentException("Sender or receiver not found");
+        }
+        var message = new Message(sender.get().profileId(), receiver.get().profileId(), command.content());
+        return Optional.of(messageRepository.save(message));
     }
 
     @Override
     public void handle(MarkMessageAsReadCommand command) {
-
+        var message = messageRepository.findById(command.messageId());
+        if (message.isEmpty()) {
+            throw new IllegalArgumentException("Message not found");
+        }
+        message.get().markAsRead();
     }
 }
