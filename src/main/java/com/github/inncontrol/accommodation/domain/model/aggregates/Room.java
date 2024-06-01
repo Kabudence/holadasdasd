@@ -1,14 +1,12 @@
 package com.github.inncontrol.accommodation.domain.model.aggregates;
 
 import com.github.inncontrol.accommodation.domain.model.commands.CreateRoomCommand;
+import com.github.inncontrol.accommodation.domain.model.valueobjects.GuestName;
 import com.github.inncontrol.accommodation.domain.model.valueobjects.RoomStatus;
 import com.github.inncontrol.accommodation.domain.model.valueobjects.RoomType;
-import com.github.inncontrol.accommodation.domain.model.valueobjects.GuestName;
 import com.github.inncontrol.shared.domain.aggregates.AuditableAbstractAggregateRoot;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 
 @Entity
 public class Room extends AuditableAbstractAggregateRoot<Room> {
@@ -16,22 +14,16 @@ public class Room extends AuditableAbstractAggregateRoot<Room> {
     private GuestName guest;
 
     @Embedded
-    @Enumerated(EnumType.STRING)
     private RoomType type;
-
-    @Embedded
-    @Enumerated(EnumType.STRING)
     private RoomStatus status;
 
-    public Room(String firstName, String lastName, String roomType, String roomState){
+    public Room(String firstName, String lastName){
         this.guest = new GuestName(firstName,lastName);
-        this.status = new RoomStatus(RoomStatus.State.valueOf(roomState));
-        this.type = new RoomType(RoomType.Type.valueOf(roomType));
+        this.type = RoomType.Standard;
+        this.status = RoomStatus.Vacant;
     }
     public Room(CreateRoomCommand command) {
         this.guest = new GuestName(command.firstName(), command.lastName());
-        this.status = new RoomStatus(RoomStatus.State.valueOf(command.Status()));
-        this.type = new RoomType(RoomType.Type.valueOf(command.type()));
     }
     public Room(){
 
@@ -46,10 +38,10 @@ public class Room extends AuditableAbstractAggregateRoot<Room> {
     }
 
     public String getRoomType(){
-        return type.getRoomType();
+        return this.type.name().toLowerCase();
     }
 
     public String getRoomStatus(){
-        return status.getRoomStatus();
+        return this.status.name().toLowerCase();
     }
 }
