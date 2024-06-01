@@ -12,7 +12,7 @@ import java.util.Optional;
 public interface EmployeeCommandService {
     Optional<Employee>handle(CreateEmployeeCommand command);
     Optional<Employee>handle(UpdateEmployeeCommand command);
-    void handle(DowngradeEmployeeCommand command);
-    void handle(AscendEmployeeCommand command);
+    Long handle(DowngradeEmployeeCommand command);
+    Long handle(AscendEmployeeCommand command);
 
 }

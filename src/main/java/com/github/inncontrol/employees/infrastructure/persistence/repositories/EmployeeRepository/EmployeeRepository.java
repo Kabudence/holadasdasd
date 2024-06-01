@@ -13,7 +13,7 @@ import java.util.Optional;
 @Repository
 public interface EmployeeRepository  extends JpaRepository<Employee,Long> {
     boolean existsByRole(RoleStatus role);
-    boolean findByProfileId(ProfileId profileId);
+    Optional<Employee> findByProfileId(ProfileId profileId);
     List<Employee>findByByInitiationDate(Date initializationDate);
     Optional<Employee>findByRoleStatus(RoleStatus role);
 }

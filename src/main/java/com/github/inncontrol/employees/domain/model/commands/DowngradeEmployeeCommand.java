@@ -1,4 +1,4 @@
 package com.github.inncontrol.employees.domain.model.commands;
 
-public record DowngradeEmployeeCommand() {
+public record DowngradeEmployeeCommand(Long employeeId) {
 }
