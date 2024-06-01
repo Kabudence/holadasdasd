@@ -9,6 +9,8 @@ import java.util.Optional;
 
 @Repository
 public interface RoomRepository extends JpaRepository<Room, Long> {
-    Optional<Room> findByRoomType(RoomType roomType);
-    boolean existsByRoomType(RoomType roomType);
+
+    Optional<Room> findByType(RoomType roomType);
+
+    boolean existsByType(RoomType roomType);
 }

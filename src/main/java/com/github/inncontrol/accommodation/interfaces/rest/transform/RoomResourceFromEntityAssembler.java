@@ -5,6 +5,6 @@ import com.github.inncontrol.accommodation.interfaces.rest.resources.RoomResourc
 
 public class RoomResourceFromEntityAssembler {
     public static RoomResource toResourceFromEntity(Room entity){
-        return new RoomResource(entity.getId(), entity.getGuestFullName(), entity.getRoomType(), entity.getRoomStatus());
+        return new RoomResource(entity.getId(), entity.getGuestFullName(), entity.getType(), entity.getStatus());
     }
 }

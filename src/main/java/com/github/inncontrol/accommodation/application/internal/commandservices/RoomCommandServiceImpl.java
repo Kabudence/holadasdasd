@@ -10,16 +10,18 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class RoomCommandServiceImpl implements RoomCommandService{
+public class RoomCommandServiceImpl implements RoomCommandService {
+
     private final RoomRepository roomRepository;
 
-    public RoomCommandServiceImpl(RoomRepository roomRepository){
-        this.roomRepository= roomRepository;
+    public RoomCommandServiceImpl(RoomRepository roomRepository) {
+        this.roomRepository = roomRepository;
     }
+
     @Override
-    public Optional<Room> handle(CreateRoomCommand command){
+    public Optional<Room> handle(CreateRoomCommand command) {
         var enumOption = RoomType.valueOf(command.type());
-        if (roomRepository.existsByRoomType(enumOption)){
+        if (roomRepository.existsByType(enumOption)){
             throw new IllegalArgumentException("Room type with " + command.type() + " already exists");
         }
         var room = new Room(command);
