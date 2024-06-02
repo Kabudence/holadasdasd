@@ -2,6 +2,7 @@ package com.github.inncontrol.inventory.interfaces.rest;
 
 
 import com.github.inncontrol.inventory.domain.model.aggregates.Inventory;
+import com.github.inncontrol.inventory.domain.model.commands.DeleteItemsCommand;
 import com.github.inncontrol.inventory.domain.model.queries.GetAllItemsQuery;
 import com.github.inncontrol.inventory.domain.model.queries.GetItemByBrandQuery;
 import com.github.inncontrol.inventory.domain.model.queries.GetItemByIdQuery;
@@ -87,7 +88,12 @@ public InventoryController(InventoryQueryService inventoryQueryService, Inventor
     return ResponseEntity.ok(inventoryResource);
     }
 
-
+    @DeleteMapping("/{inventoryId}")
+    public ResponseEntity<?> deleteInventory(@PathVariable Long inventoryId) {
+    var deleteItemsCommand = new DeleteItemsCommand(inventoryId);
+    inventoryCommandService.handle(deleteItemsCommand);
+    return ResponseEntity.ok("Course with id " + inventoryId + " has been deleted.");
+    }
 
 
 }
