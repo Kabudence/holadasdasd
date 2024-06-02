@@ -1,7 +1,6 @@
 package com.github.inncontrol.employees.domain.model.valueobjects;
 
 import jakarta.persistence.Embeddable;
-import jakarta.persistence.Embedded;
 
 import java.time.Duration;
 import java.time.Instant;
