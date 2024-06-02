@@ -1,6 +1,9 @@
 package com.github.inncontrol.employees.domain.model.valueobjects;
 
-public record SalaryEmployee(Double salary,CurrencyStatus currency) {
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+
+public record SalaryEmployee(Double salary, @Enumerated(EnumType.STRING) Currency currency) {
     public SalaryEmployee {
         if (salary < 0) {
             throw new IllegalArgumentException("Salary cannot be negative");
@@ -11,7 +14,10 @@ public record SalaryEmployee(Double salary,CurrencyStatus currency) {
     }
 
     public SalaryEmployee() {
-        this(0.0, CurrencyStatus.SOLES);
+        this(0.0, Currency.SOLES);
+    }
+    public SalaryEmployee(Double salary) {
+        this(salary, Currency.SOLES);
     }
 
     public SalaryEmployee updateSalary(Double salary) {
@@ -21,7 +27,7 @@ public record SalaryEmployee(Double salary,CurrencyStatus currency) {
         return new SalaryEmployee(salary, this.currency);
     }
 
-    public SalaryEmployee updateCurrency(CurrencyStatus currency) {
+    public SalaryEmployee updateCurrency(Currency currency) {
         if (currency == null) {
             throw new IllegalArgumentException("currency cannot be null");
         }
