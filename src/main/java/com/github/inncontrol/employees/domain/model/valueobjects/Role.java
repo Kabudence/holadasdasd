@@ -1,6 +1,6 @@
 package com.github.inncontrol.employees.domain.model.valueobjects;
 
-public enum RoleStatus {
+public enum Role {
     EMPLOYEE,
     MANAGER,
 }
