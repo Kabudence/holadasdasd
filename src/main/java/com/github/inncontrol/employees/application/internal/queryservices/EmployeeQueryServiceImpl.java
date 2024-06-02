@@ -26,10 +26,7 @@ public class EmployeeQueryServiceImpl implements EmployeeQueryService {
         return this.employeeRepository.findAll();
     }
 
-    @Override
-    public List<Employee> handle(GetAllEmployeeByInitiationDate query) {
-        return this.employeeRepository.findByByInitiationDate(query.initializationDate());
-    }
+
 
     @Override
     public Optional<Employee> handle(GetEmployeeByIdQuery query) {
@@ -38,6 +35,6 @@ public class EmployeeQueryServiceImpl implements EmployeeQueryService {
 
     @Override
     public Optional<Employee> handle(GetEmployeeByRoleStatus query) {
-        return this.employeeRepository.findByRoleStatus(query.role());
+        return this.employeeRepository.findByRole(query.role());
     }
 }

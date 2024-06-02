@@ -24,7 +24,7 @@ public class EmployeeCommandServiceImpl implements EmployeeCommandService {
     }
 
     @Override
-    public Optional<Employee> handle(CreateEmployeeCommand command) {
+    public Long handle(CreateEmployeeCommand command) {
 
         var profileId= externalProfileService.fetchProfileIdByEmail(command.email());
         if(profileId.isEmpty()){
@@ -35,9 +35,9 @@ public class EmployeeCommandServiceImpl implements EmployeeCommandService {
             });
         }
         if (profileId.isEmpty()) throw new IllegalArgumentException("Unable to create profile");
-        var employee= new Employee(profileId.get());
+        var employee= new Employee(profileId.get(),command.salary(),command.contractInformation());
         employeeRepository.save(employee);
-        return Optional.of(employee);
+        return employee.getId();
 
 
 
@@ -46,16 +46,29 @@ public class EmployeeCommandServiceImpl implements EmployeeCommandService {
     @Override
     public Optional<Employee> handle(UpdateEmployeeCommand command) {
 
-    return Optional.empty();
+        var profileId = externalProfileService.fetchProfileIdByEmail(command.email());
+        if (profileId.isEmpty()) {
+            throw new IllegalArgumentException("Employee not exists");
+        } else {
+            var result = employeeRepository.findByProfileId(profileId.get());
+            if (result.isEmpty()) throw new IllegalArgumentException("Employee does not exist");
+            var employeeToUpdate = result.get();
+            try {
+                var updatedEmployee = employeeRepository.save(employeeToUpdate.updateInformation(command.salary(), command.contractInformation(),command.role()));
+                return Optional.of(updatedEmployee);
+            } catch (Exception e) {
+                throw new IllegalArgumentException("Error while updating course: " + e.getMessage());
+            }
+        }
 
     }
-
     @Override
     public Long handle(DowngradeEmployeeCommand command) {
 
-        employeeRepository.findById(command.employeeId()).map(employeee->{employeee.downgradeToEmployee();
-            employeeRepository.save(employeee);
-            return command.employeeId();
+        employeeRepository.findById(command.employeeId()).map(employee->{
+            employee.downgradeToEmployee();
+            employeeRepository.save(employee);
+            return employee.getId();
         }).orElseThrow(() -> new RuntimeException("Enrollment not found"));
         return null;
 

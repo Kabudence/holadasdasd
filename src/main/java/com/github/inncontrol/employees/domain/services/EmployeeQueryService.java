@@ -12,7 +12,6 @@ import java.util.Optional;
 public interface EmployeeQueryService {
 
     List<Employee>handle(GetAllEmployeeQuery query);
-    List<Employee>handle(GetAllEmployeeByInitiationDate query);
     Optional<Employee> handle(GetEmployeeByIdQuery query);
     Optional<Employee> handle(GetEmployeeByRoleStatus query);
 
