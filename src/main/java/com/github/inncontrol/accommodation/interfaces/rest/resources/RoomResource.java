@@ -4,6 +4,8 @@ public record RoomResource(
         Long id,
         String fullName,
         String roomType,
-        String roomStatus
+        String roomStatus,
+        int roomNumber,
+        String roomReservation
 ) {
 }
