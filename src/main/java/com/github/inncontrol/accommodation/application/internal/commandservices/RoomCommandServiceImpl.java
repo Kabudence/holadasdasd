@@ -5,7 +5,6 @@ import com.github.inncontrol.accommodation.domain.model.commands.CreateRoomComma
 import com.github.inncontrol.accommodation.domain.model.commands.DeleteRoomCommand;
 import com.github.inncontrol.accommodation.domain.model.commands.UpdateRoomCommand;
 import com.github.inncontrol.accommodation.domain.model.services.RoomCommandService;
-import com.github.inncontrol.accommodation.domain.model.valueobjects.RoomType;
 import com.github.inncontrol.accommodation.infrastructure.persistence.jpa.repositories.RoomRepository;
 import org.springframework.stereotype.Service;
 
