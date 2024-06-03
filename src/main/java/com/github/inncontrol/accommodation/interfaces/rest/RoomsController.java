@@ -1,13 +1,16 @@
 package com.github.inncontrol.accommodation.interfaces.rest;
 
+import com.github.inncontrol.accommodation.domain.model.commands.DeleteRoomCommand;
 import com.github.inncontrol.accommodation.domain.model.queries.GetAllRoomsQuery;
 import com.github.inncontrol.accommodation.domain.model.queries.GetRoomByIdQuery;
 import com.github.inncontrol.accommodation.domain.model.services.RoomCommandService;
 import com.github.inncontrol.accommodation.domain.model.services.RoomQueryService;
 import com.github.inncontrol.accommodation.interfaces.rest.resources.CreateRoomResource;
 import com.github.inncontrol.accommodation.interfaces.rest.resources.RoomResource;
+import com.github.inncontrol.accommodation.interfaces.rest.resources.UpdateRoomResource;
 import com.github.inncontrol.accommodation.interfaces.rest.transform.CreateRoomCommandFromResourceAssembler;
 import com.github.inncontrol.accommodation.interfaces.rest.transform.RoomResourceFromEntityAssembler;
+import com.github.inncontrol.accommodation.interfaces.rest.transform.UpdateRoomCommandFromResourceAssembler;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -56,5 +59,20 @@ public class RoomsController {
                 .map(RoomResourceFromEntityAssembler::toResourceFromEntity)
                 .collect(Collectors.toList());
         return ResponseEntity.ok(roomResources);
+    }
+
+    @PutMapping("/{roomId}")
+    public ResponseEntity<RoomResource> updateRoom(@PathVariable Long roomId, @RequestBody UpdateRoomResource updateRoomResource){
+        var updateRoomCommand = UpdateRoomCommandFromResourceAssembler.toCommandFromResource(roomId,updateRoomResource);
+        var updatedRoom = roomCommandService.handle(updateRoomCommand);
+        if(updatedRoom.isEmpty()) return ResponseEntity.badRequest().build();
+        var roomResource = RoomResourceFromEntityAssembler.toResourceFromEntity(updatedRoom.get());
+        return ResponseEntity.ok(roomResource);
+    }
+    @DeleteMapping("/{roomId}")
+    public ResponseEntity<?> deleteRoom(@PathVariable Long roomId) {
+        var deleteRoomCommand = new DeleteRoomCommand(roomId);
+        roomCommandService.handle(deleteRoomCommand);
+        return ResponseEntity.ok("Room with given id successfully deleted");
     }
 }
