@@ -26,6 +26,7 @@ public class Message extends AuditableAbstractAggregateRoot<Message> {
     private MessageStatus status;
 
     @Column(nullable = false)
+    @Getter
     private String content;
 
     public Message() {
@@ -44,6 +45,10 @@ public class Message extends AuditableAbstractAggregateRoot<Message> {
     public void sendMessage() {
         this.status = MessageStatus.SEND;
         this.registerEvent(new MessageCreatedEvent(this, this.getId()));
+    }
+
+    public String getNiceCreatedAt() {
+        return this.getCreatedAt().toString();
     }
 
     public void markAsRead() {
