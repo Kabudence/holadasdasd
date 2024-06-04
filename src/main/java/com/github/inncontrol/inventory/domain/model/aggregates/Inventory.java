@@ -33,8 +33,8 @@ public class Inventory extends AbstractAggregateRoot<Inventory> {
 
 
     public Inventory(CreateItemsCommand command) {
-        this.productTitle = command.itemDescription();
-        this.productDescription = command.itemTitle();
+        this.productTitle = command.itemTitle();
+        this.productDescription = command.itemDescription();
         this.productQuantity = command.itemQuantity();
         this.brand = command.Brand();
          }
