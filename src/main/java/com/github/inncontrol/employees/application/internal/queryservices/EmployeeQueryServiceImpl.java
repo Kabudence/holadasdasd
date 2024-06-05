@@ -1,7 +1,6 @@
 package com.github.inncontrol.employees.application.internal.queryservices;
 
 import com.github.inncontrol.employees.domain.model.aggregates.Employee;
-import com.github.inncontrol.employees.domain.model.queries.GetAllEmployeeByInitiationDate;
 import com.github.inncontrol.employees.domain.model.queries.GetAllEmployeeQuery;
 import com.github.inncontrol.employees.domain.model.queries.GetEmployeeByIdQuery;
 import com.github.inncontrol.employees.domain.model.queries.GetEmployeeByRoleStatus;

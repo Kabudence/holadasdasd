@@ -1,6 +1,5 @@
 package com.github.inncontrol.employees.interfaces.rest.resources;
 
-import com.github.inncontrol.employees.domain.model.valueobjects.ContractInformation;
 import com.github.inncontrol.employees.domain.model.valueobjects.Role;
 
 import java.util.Date;

@@ -14,10 +14,10 @@ public record SalaryEmployee(Double salary, @Enumerated(EnumType.STRING) Currenc
     }
 
     public SalaryEmployee() {
-        this(0.0, Currency.SOLES);
+        this(0.0, Currency.PEN);
     }
     public SalaryEmployee(Double salary) {
-        this(salary, Currency.SOLES);
+        this(salary, Currency.PEN);
     }
 
     public SalaryEmployee updateSalary(Double salary) {

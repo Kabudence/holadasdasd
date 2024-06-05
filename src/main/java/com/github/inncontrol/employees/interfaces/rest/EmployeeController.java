@@ -1,7 +1,6 @@
 package com.github.inncontrol.employees.interfaces.rest;
 
 
-import com.github.inncontrol.employees.domain.model.commands.CreateEmployeeCommand;
 import com.github.inncontrol.employees.domain.model.queries.GetEmployeeByIdQuery;
 import com.github.inncontrol.employees.domain.services.EmployeeCommandService;
 import com.github.inncontrol.employees.domain.services.EmployeeQueryService;

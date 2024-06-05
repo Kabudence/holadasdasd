@@ -8,7 +8,6 @@ import com.github.inncontrol.shared.domain.aggregates.AuditableAbstractAggregate
 import jakarta.persistence.*;
 import lombok.Getter;
 
-import javax.management.relation.RoleStatus;
 import java.util.Date;
 
 @Entity
