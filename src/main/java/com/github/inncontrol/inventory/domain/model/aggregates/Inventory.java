@@ -36,7 +36,7 @@ public class Inventory extends AbstractAggregateRoot<Inventory> {
         this.productTitle = command.itemTitle();
         this.productDescription = command.itemDescription();
         this.productQuantity = command.itemQuantity();
-        this.brand = command.Brand();
+        this.brand = command.brand();
          }
 
     public Inventory updateInformation(String title, String description, Integer quantity, String brand) {

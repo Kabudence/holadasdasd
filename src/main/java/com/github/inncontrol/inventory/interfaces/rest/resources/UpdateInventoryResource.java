@@ -9,7 +9,7 @@ public record UpdateInventoryResource(String productTitle, String productDescrip
         if (Brand == null || Brand.isBlank())
             throw new IllegalArgumentException("brand cannot be null or empty");
         if (Quantity < 0) {
-            throw new IllegalArgumentException("Starting Quantity cannot be less than 0");
+            throw new IllegalArgumentException("Starting quantity cannot be less than 0");
         }
     }
 }

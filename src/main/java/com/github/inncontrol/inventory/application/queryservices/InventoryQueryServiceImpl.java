@@ -26,13 +26,13 @@ public class InventoryQueryServiceImpl implements InventoryQueryService {
 
     @Override
     public Optional<Inventory> handle(GetItemByIdQuery query){
-        return itemRepository.findById(query.ItemId());
+        return itemRepository.findById(query.itemId());
     }
 
     @Override
     public List<Inventory> handle(GetItemByBrandQuery query)
     {
-        return itemRepository.findAllByBrand(query.BrandName());
+        return itemRepository.findAllByBrand(query.brandName());
     }
 
 

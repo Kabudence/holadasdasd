@@ -1,8 +1,8 @@
 package com.github.inncontrol.inventory.domain.model.queries;
 
-public record GetItemByBrandQuery(String BrandName) {
+public record GetItemByBrandQuery(String brandName) {
     public GetItemByBrandQuery {
-        if (BrandName == null || BrandName.isBlank())
-            throw new IllegalArgumentException("Brand Cant be null or empty");
+        if (brandName == null || brandName.isBlank())
+            throw new IllegalArgumentException("brand Cant be null or empty");
     }
 }

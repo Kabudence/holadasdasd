@@ -25,7 +25,7 @@ import java.util.Optional;
 import static org.springframework.http.HttpStatus.CREATED;
 
 @RestController
-@RequestMapping(value="/inventory", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value="api/v1/inventory", produces = MediaType.APPLICATION_JSON_VALUE)
 @Tag(name="Inventory", description = "Inventory Management Endpoints")
 public class InventoryController {
 
@@ -38,7 +38,7 @@ public InventoryController(InventoryQueryService inventoryQueryService, Inventor
 }
 
     @PostMapping
-    public ResponseEntity<InventoryResource> CreateItem(
+    public ResponseEntity<InventoryResource> createItem(
             @RequestBody CreateInventoryResource CreateInventoryResource) {
             Optional<Inventory> InventorySource = inventoryCommandService
                     .handle(CreateInventoryCommandFromResourceAssembler.toCommandFromResource(CreateInventoryResource));

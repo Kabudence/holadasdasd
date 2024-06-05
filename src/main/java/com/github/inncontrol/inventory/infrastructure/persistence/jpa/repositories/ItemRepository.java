@@ -2,13 +2,12 @@ package com.github.inncontrol.inventory.infrastructure.persistence.jpa.repositor
 
 import com.github.inncontrol.inventory.domain.model.aggregates.Inventory;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
+@Repository
 public interface ItemRepository extends JpaRepository<Inventory, Long> {
-    Optional<Inventory> findById(Long id);
-    List<Inventory> findAll();
     List<Inventory> findAllByBrand(String brand);
     boolean existsByProductTitle(String itemName);
 }

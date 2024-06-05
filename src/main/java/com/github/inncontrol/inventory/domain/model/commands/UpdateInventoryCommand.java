@@ -1,7 +1,7 @@
 package com.github.inncontrol.inventory.domain.model.commands;
 
 
-public record UpdateInventoryCommand(Long id, String itemTitle, String itemDescription, Integer itemQuantity, String Brand) {
+public record UpdateInventoryCommand(Long id, String itemTitle, String itemDescription, Integer itemQuantity, String brand) {
 
     public UpdateInventoryCommand {
         if (id == null || id <= 0) {
@@ -15,10 +15,10 @@ public record UpdateInventoryCommand(Long id, String itemTitle, String itemDescr
             throw new IllegalArgumentException("Item's Description cannot be null or empty");
         }
         if (itemQuantity == null || itemQuantity < 0) {
-            throw new IllegalArgumentException("Item's Quantity cannot be negative or empty");
+            throw new IllegalArgumentException("Item's quantity cannot be negative or empty");
         }
-        if (Brand == null || Brand.isBlank()) {
-            throw new IllegalArgumentException("Item's Brand cannot be null or empty");
+        if (brand == null || brand.isBlank()) {
+            throw new IllegalArgumentException("Item's brand cannot be null or empty");
         }
 
 
