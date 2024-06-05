@@ -66,8 +66,10 @@ public class Task extends AuditableAbstractAggregateRoot<Task> {
         return this.dueDate.before(new Date());
     }
 
+    /**
+     * @return a nice formatted due date
+     */
     public String getNiceDueDate() {
-        // 23 Mar 2021, 12:00
         DateFormatter dateFormatter = new DateFormatter("dd MMM yyyy, HH:mm");
         Locale locale = Locale.ENGLISH;
         return dateFormatter.print(this.dueDate, locale);
