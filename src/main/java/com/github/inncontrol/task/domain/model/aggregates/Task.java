@@ -1,7 +1,6 @@
 package com.github.inncontrol.task.domain.model.aggregates;
 
 import com.github.inncontrol.shared.domain.aggregates.AuditableAbstractAggregateRoot;
-import com.github.inncontrol.task.domain.model.commands.CreateTaskCommand;
 import com.github.inncontrol.task.domain.model.valueobjects.EmployeeIdentifier;
 import com.github.inncontrol.task.domain.model.valueobjects.TaskInformation;
 import com.github.inncontrol.task.domain.model.valueobjects.TaskStatus;
