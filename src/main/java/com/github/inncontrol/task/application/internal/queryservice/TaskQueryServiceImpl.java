@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.github.inncontrol.task.application.internal.outboundservice.acl.ExternalEmployeeService;
 import com.github.inncontrol.task.domain.model.aggregates.Task;
 import com.github.inncontrol.task.domain.model.queries.GetAllTaskForEmployeeQuery;
 import com.github.inncontrol.task.domain.model.queries.GetAllTaskFromDatesForEmployeeQuery;
@@ -21,17 +22,16 @@ import lombok.AllArgsConstructor;
 public class TaskQueryServiceImpl implements TaskQueryService {
 
     private final TaskRepository taskRepository;
+    private final ExternalEmployeeService employeeService;
 
     @Override
     public Optional<Task> handle(GetTaskByIdQuery query) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'handle'");
+        return taskRepository.findById(query.id());
     }
 
     @Override
     public List<Task> handle(GetAllTaskQuery query) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'handle'");
+        return taskRepository.findAll();
     }
 
     @Override
