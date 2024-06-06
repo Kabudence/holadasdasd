@@ -1,7 +1,6 @@
 package com.github.inncontrol.task.application.internal.queryservice;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import org.springframework.stereotype.Service;
 
@@ -36,20 +35,37 @@ public class TaskQueryServiceImpl implements TaskQueryService {
 
     @Override
     public List<Task> handle(GetAllTaskForEmployeeQuery query) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'handle'");
+        var employeeId = employeeService.fetchEmployeeIdentifierByEmail(query.employeeEmail()).orElseThrow(() -> new IllegalArgumentException("Employee not found"));
+        return taskRepository.findAllByEmployee(employeeId);
     }
 
     @Override
     public List<Task> handle(GetAllTaskInWeekForEmployeeQuery query) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'handle'");
+        var employeeId = employeeService.fetchEmployeeIdentifierByEmail(query.employeeEmail()).orElseThrow(() -> new IllegalArgumentException("Employee not found"));
+        // Here we initialize a GregorianCalendar instance
+        var calendar = new GregorianCalendar();
+
+        // set the calendar to monday of the current week
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+        // set the time to 00:00:00
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+
+        Date start = calendar.getTime();
+
+        // set the calendar to sunday of the current week
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+        // set the time to 23:59:59
+        calendar.set(Calendar.HOUR_OF_DAY, 23);
+
+        Date end = calendar.getTime();
+
+        return taskRepository.finAllInDateRangeByEmployee(employeeId, start, end);
     }
 
     @Override
     public List<Task> handle(GetAllTaskFromDatesForEmployeeQuery query) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'handle'");
+        var employeeId = employeeService.fetchEmployeeIdentifierByEmail(query.employeeEmail()).orElseThrow(() -> new IllegalArgumentException("Employee not found"));
+        return taskRepository.finAllInDateRangeByEmployee(employeeId, query.startDate(), query.endDate());
     }
 
 }
