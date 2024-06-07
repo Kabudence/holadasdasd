@@ -34,7 +34,7 @@ public class UserDetailsImpl implements UserDetails {
         this.enabled = true;
     }
 
-    public static UserDetailsImpl build(User user) {
+    public static UserDetailsImpl build (User user) {
         var authorities = user.getRoles().stream().map(role -> role.getName().name())
                 .map(SimpleGrantedAuthority::new).toList();
         return new UserDetailsImpl(user.getUsername(), user.getPassword(), authorities);
