@@ -1,0 +1,13 @@
+services:
+  mysql:
+    image: 'mysql:latest'
+    container_name: 'inncontrol_backend_mysql'
+    environment:
+      - 'MYSQL_DATABASE=inncontrol_backend'
+      - 'MYSQL_PASSWORD=password'
+      - 'MYSQL_ROOT_PASSWORD=securepassword123'
+      - 'MYSQL_USER=inncontrol'
+    ports:
+      - '3306'
+    expose:
+      - '3306'
