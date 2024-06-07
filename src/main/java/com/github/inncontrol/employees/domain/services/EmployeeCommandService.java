@@ -9,7 +9,7 @@ import com.github.inncontrol.employees.domain.model.commands.UpdateEmployeeComma
 
 import java.util.Optional;
 
-public interface EmployeeCommandService {
+public interface  EmployeeCommandService {
     Long handle(CreateEmployeeCommand command);
     Optional<Employee>handle(UpdateEmployeeCommand command);
     Long handle(DowngradeEmployeeCommand command);
