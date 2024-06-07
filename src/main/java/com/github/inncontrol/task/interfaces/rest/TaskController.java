@@ -24,7 +24,7 @@ import java.util.List;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
-@RequestMapping(value = "/api/v1/messages", produces = APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/api/v1/tasks", produces = APPLICATION_JSON_VALUE)
 @Tag(name = "Messages", description = "Messages Management Endpoints")
 @AllArgsConstructor
 public class TaskController {
@@ -52,7 +52,7 @@ public class TaskController {
         return ResponseEntity.ok(tasks);
     }
 
-    @GetMapping
+    @GetMapping("/week")
     public ResponseEntity<List<TaskResource>> getAllTaskInWeekByEmployeeEmail(@RequestBody GetAllTaskInWeekForEmployeeResource resource) {
         var query = GetAllTasksInWeekForEmployeeQueryFromResourceAssembler.toQueryFromResource(resource);
         var tasks = taskQueryService.handle(query)
@@ -62,7 +62,7 @@ public class TaskController {
         return ResponseEntity.ok(tasks);
     }
 
-    @GetMapping
+    @GetMapping("/date")
     public ResponseEntity<List<TaskResource>> getAllTaskFromDateForEmployee(@RequestBody GetAllTaskFromDatesForEmployeeResource resource) {
         var query = GetAllTaskFromDateForEmployeeQueryFromResourceAssembler.toQueryFromResource(resource);
         var tasks = taskQueryService.handle(query)
