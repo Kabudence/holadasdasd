@@ -6,7 +6,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class HashingServiceImpl implements BCryptHashingService {
+public class HashingServiceImpl  implements BCryptHashingService {
     private final BCryptPasswordEncoder passwordEncoder;
 
     public HashingServiceImpl() {
