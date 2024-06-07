@@ -4,7 +4,7 @@ import com.github.inncontrol.communications.domain.model.aggregates.Message;
 import com.github.inncontrol.communications.domain.model.command.CreateMessageCommand;
 import com.github.inncontrol.communications.domain.model.command.MarkMessageAsReadCommand;
 import com.github.inncontrol.communications.domain.services.MessageCommandService;
-import com.github.inncontrol.communications.infrastructure.persistence.jpa.MessageRepository;
+import com.github.inncontrol.communications.infrastructure.persistence.jpa.repositories.MessageRepository;
 import com.github.inncontrol.shared.application.internal.outboundedservices.acl.ExternalProfileService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

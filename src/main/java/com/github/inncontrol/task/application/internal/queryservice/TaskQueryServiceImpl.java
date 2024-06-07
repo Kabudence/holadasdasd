@@ -12,7 +12,7 @@ import com.github.inncontrol.task.domain.model.queries.GetAllTaskInWeekForEmploy
 import com.github.inncontrol.task.domain.model.queries.GetAllTaskQuery;
 import com.github.inncontrol.task.domain.model.queries.GetTaskByIdQuery;
 import com.github.inncontrol.task.domain.services.TaskQueryService;
-import com.github.inncontrol.task.infrastructure.persistence.jpa.TaskRepository;
+import com.github.inncontrol.task.infrastructure.persistence.jpa.repositories.TaskRepository;
 
 import lombok.AllArgsConstructor;
 

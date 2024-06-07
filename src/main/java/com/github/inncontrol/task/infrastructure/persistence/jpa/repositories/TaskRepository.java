@@ -1,4 +1,4 @@
-package com.github.inncontrol.task.infrastructure.persistence.jpa;
+package com.github.inncontrol.task.infrastructure.persistence.jpa.repositories;
 
 import com.github.inncontrol.task.domain.model.valueobjects.EmployeeIdentifier;
 import org.springframework.data.jpa.repository.JpaRepository;

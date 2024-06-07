@@ -12,7 +12,7 @@ import com.github.inncontrol.task.domain.model.commands.StartTaskCommand;
 import com.github.inncontrol.task.domain.model.valueobjects.TaskInformation;
 import com.github.inncontrol.task.domain.model.valueobjects.TaskStatus;
 import com.github.inncontrol.task.domain.services.TaskCommandService;
-import com.github.inncontrol.task.infrastructure.persistence.jpa.TaskRepository;
+import com.github.inncontrol.task.infrastructure.persistence.jpa.repositories.TaskRepository;
 
 import lombok.AllArgsConstructor;
 

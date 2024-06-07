@@ -1,4 +1,4 @@
-package com.github.inncontrol.communications.infrastructure.persistence.jpa;
+package com.github.inncontrol.communications.infrastructure.persistence.jpa.repositories;
 
 import com.github.inncontrol.communications.domain.model.aggregates.Message;
 import com.github.inncontrol.communications.domain.model.valueobjects.ProfileIdentifier;

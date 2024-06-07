@@ -6,7 +6,7 @@ import com.github.inncontrol.communications.domain.model.queries.GetAllReceivers
 import com.github.inncontrol.communications.domain.model.queries.GetMessageByIdQuery;
 import com.github.inncontrol.communications.domain.model.valueobjects.ProfileIdentifier;
 import com.github.inncontrol.communications.domain.services.MessageQueryService;
-import com.github.inncontrol.communications.infrastructure.persistence.jpa.MessageRepository;
+import com.github.inncontrol.communications.infrastructure.persistence.jpa.repositories.MessageRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
