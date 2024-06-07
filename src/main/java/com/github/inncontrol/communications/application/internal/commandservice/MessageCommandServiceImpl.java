@@ -1,11 +1,11 @@
 package com.github.inncontrol.communications.application.internal.commandservice;
 
-import com.github.inncontrol.communications.application.internal.outboundservices.acl.ExternalProfileService;
 import com.github.inncontrol.communications.domain.model.aggregates.Message;
 import com.github.inncontrol.communications.domain.model.command.CreateMessageCommand;
 import com.github.inncontrol.communications.domain.model.command.MarkMessageAsReadCommand;
 import com.github.inncontrol.communications.domain.services.MessageCommandService;
 import com.github.inncontrol.communications.infrastructure.persistence.jpa.MessageRepository;
+import com.github.inncontrol.shared.application.internal.outboundedservices.acl.ExternalProfileService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -20,8 +20,8 @@ public class MessageCommandServiceImpl implements MessageCommandService {
 
     @Override
     public Optional<Message> handle(CreateMessageCommand command) {
-        var sender = externalProfileService.fetchProfileIdentifierByEmail(command.senderEmail());
-        var receiver = externalProfileService.fetchProfileIdentifierByEmail(command.receiverEmail());
+        var sender = externalProfileService.fetchProfileIdByEmail(command.senderEmail());
+        var receiver = externalProfileService.fetchProfileIdByEmail(command.receiverEmail());
         if (sender.isEmpty() || receiver.isEmpty()) {
             throw new IllegalArgumentException("Sender or receiver not found");
         }
