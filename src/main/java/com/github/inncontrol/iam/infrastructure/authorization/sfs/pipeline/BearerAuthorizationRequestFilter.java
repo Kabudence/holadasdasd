@@ -22,7 +22,7 @@ public class BearerAuthorizationRequestFilter extends OncePerRequestFilter {
     private final BearerTokenService tokenService;
 
     @Qualifier("defaultUserDetailsService")
-    private final UserDetailsService userDetailsService;
+    private final UserDetailsService  userDetailsService;
 
     public BearerAuthorizationRequestFilter(BearerTokenService tokenService, UserDetailsService userDetailsService) {
         this.tokenService = tokenService;
