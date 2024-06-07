@@ -1,4 +1,4 @@
-package com.github.inncontrol.employees.application.internal.outboundedservices.acl;
+package com.github.inncontrol.shared.application.internal.outboundedservices.acl;
 
 import com.github.inncontrol.employees.domain.model.valueobjects.ProfileId;
 import com.github.inncontrol.profiles.interfaces.acl.ProfilesContextFacade;
