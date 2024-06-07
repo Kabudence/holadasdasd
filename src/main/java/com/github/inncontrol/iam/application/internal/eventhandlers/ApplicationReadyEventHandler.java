@@ -18,7 +18,7 @@ public class ApplicationReadyEventHandler {
 
 
     public ApplicationReadyEventHandler(RoleCommandService roleCommandService) {
-        this.roleCommandService = roleCommandService;
+        this.roleCommandService =  roleCommandService;
     }
 
     @EventListener
