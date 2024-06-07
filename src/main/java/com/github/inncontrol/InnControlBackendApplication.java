@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @SpringBootApplication
 @EnableJpaAuditing // Enable JPA Auditing
-public class InnControlBackendApplication {
+public class InnControlBackendApplication  {
 
 	public static void main(String[] args) {
 		SpringApplication.run(InnControlBackendApplication.class, args);
