@@ -19,7 +19,7 @@ public class UserCommandServiceImpl implements UserCommandService {
     private final UserRepository userRepository;
     private final HashingService hashingService;
     private final TokenService tokenService;
-    private final RoleRepository roleRepository;
+    private final  RoleRepository roleRepository;
 
     public UserCommandServiceImpl(UserRepository userRepository, HashingService hashingService, TokenService tokenService, RoleRepository roleRepository) {
         this.userRepository = userRepository;
