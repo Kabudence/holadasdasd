@@ -1,13 +1,10 @@
 package com.github.inncontrol.communications.domain.model.aggregates;
 
-import com.github.inncontrol.communications.domain.model.command.CreateMessageCommand;
 import com.github.inncontrol.communications.domain.model.event.MessageCreatedEvent;
 import com.github.inncontrol.communications.domain.model.valueobjects.MessageStatus;
 import com.github.inncontrol.communications.domain.model.valueobjects.ProfileIdentifier;
 import com.github.inncontrol.shared.domain.aggregates.AuditableAbstractAggregateRoot;
-import jakarta.persistence.Column;
-import jakarta.persistence.Embedded;
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import lombok.Getter;
 
 @Entity
@@ -15,10 +12,16 @@ public class Message extends AuditableAbstractAggregateRoot<Message> {
 
     @Embedded
     @Getter
+    @AttributeOverrides({
+            @AttributeOverride(name = "profileId", column = @Column(name = "sender_profile_id"))
+    })
     private ProfileIdentifier sender;
 
     @Embedded
     @Getter
+    @AttributeOverrides({
+            @AttributeOverride(name = "profileId", column = @Column(name = "receiver_profile_id"))
+    })
     private ProfileIdentifier receiver;
 
     @Embedded
