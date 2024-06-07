@@ -7,7 +7,7 @@ import com.github.inncontrol.employees.domain.model.commands.CreateEmployeeComma
 import com.github.inncontrol.employees.domain.model.commands.DowngradeEmployeeCommand;
 import com.github.inncontrol.employees.domain.model.commands.UpdateEmployeeCommand;
 import com.github.inncontrol.employees.domain.services.EmployeeCommandService;
-import com.github.inncontrol.employees.infrastructure.persistence.repositories.EmployeeRepository.EmployeeRepository;
+import com.github.inncontrol.employees.infrastructure.persistence.jpa.EmployeeRepository.EmployeeRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;

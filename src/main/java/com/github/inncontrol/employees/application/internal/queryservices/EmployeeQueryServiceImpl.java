@@ -5,7 +5,7 @@ import com.github.inncontrol.employees.domain.model.queries.GetAllEmployeeQuery;
 import com.github.inncontrol.employees.domain.model.queries.GetEmployeeByIdQuery;
 import com.github.inncontrol.employees.domain.model.queries.GetEmployeeByRoleStatus;
 import com.github.inncontrol.employees.domain.services.EmployeeQueryService;
-import com.github.inncontrol.employees.infrastructure.persistence.repositories.EmployeeRepository.EmployeeRepository;
+import com.github.inncontrol.employees.infrastructure.persistence.jpa.EmployeeRepository.EmployeeRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
