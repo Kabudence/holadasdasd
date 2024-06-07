@@ -3,6 +3,36 @@
 ## Summary 
 Inn Control Platform, illustrating development with Java, Spring Boot Framework, and Spring Data JPA on MySQL Database. It also illustrates open-api documentation configuration and integration with Swagger UI.
 
+## PostMan Commands
+
+Get
+http://localhost:8080/inventory (Gets all items in inventory)
+http://localhost:8080/inventory/{id} (Gets a specific item in inventory)
+http://localhost:8080/inventory/brand?brandName={brandName} (Gets the items with the same brandName)
+
+Post
+http://localhost:8080/inventory (Posts a new item)
+```
+{
+"productTitle": "Name",
+"productDescription": "Description",
+"Brand": "Brand",
+"Quantity": QuantityNumber
+}
+```
+
+Put
+http://localhost:8080/inventory/{id} (Updates a specific item in inventory)
+```
+{
+"productTitle": "Name",
+"productDescription": "Description",
+"Brand": "Brand",
+"Quantity": QuantityNumber
+}
+```
+
+
 ### Reference Documentation
 For further reference, please consider the following sections:
 
