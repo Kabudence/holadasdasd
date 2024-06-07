@@ -8,7 +8,7 @@ import com.github.inncontrol.employees.domain.model.queries.GetEmployeeByRoleSta
 import java.util.List;
 import java.util.Optional;
 
-public interface EmployeeQueryService {
+public interface  EmployeeQueryService {
 
     List<Employee>handle(GetAllEmployeeQuery query);
     Optional<Employee> handle(GetEmployeeByIdQuery query);

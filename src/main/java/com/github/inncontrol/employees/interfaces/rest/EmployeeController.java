@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(value = "/api/v2/employee", produces = MediaType.APPLICATION_JSON_VALUE)
 @Tag(name = "Employee", description = "Employee Management Endpoints")
-public class EmployeeController {
+public class  EmployeeController {
 
     private final EmployeeCommandService employeeCommandService;
     private final EmployeeQueryService employeeQueryService;
