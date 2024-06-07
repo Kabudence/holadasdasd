@@ -1,4 +1,4 @@
-package com.github.inncontrol.employees.infrastructure.persistence.repositories.EmployeeRepository;
+package com.github.inncontrol.employees.infrastructure.persistence.jpa.EmployeeRepository;
 
 import com.github.inncontrol.employees.domain.model.aggregates.Employee;
 import com.github.inncontrol.employees.domain.model.valueobjects.ProfileId;
