@@ -1,7 +1,8 @@
 package com.github.inncontrol.iam.interfaces.rest.transform;
 
-import com.acme.center.platform.iam.domain.model.entities.Role;
-import com.acme.center.platform.iam.interfaces.rest.resources.RoleResource;
+
+import com.github.inncontrol.iam.domain.model.entities.Role;
+import com.github.inncontrol.iam.interfaces.rest.resources.RoleResource;
 
 public class RoleResourceFromEntityAssembler {
     public static RoleResource toResourceFromEntity(Role role) {
