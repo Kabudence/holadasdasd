@@ -11,7 +11,7 @@ import lombok.Getter;
 import java.util.Date;
 
 @Entity
-public class Employee extends AuditableAbstractAggregateRoot<Employee> {
+public class  Employee extends AuditableAbstractAggregateRoot<Employee> {
 
     @Embedded
     private ContractInformation contract;
