@@ -1,14 +1,15 @@
 package com.github.inncontrol.iam.interfaces.rest;
 
-import com.acme.center.platform.iam.domain.services.UserCommandService;
-import com.acme.center.platform.iam.interfaces.rest.resources.AuthenticatedUserResource;
-import com.acme.center.platform.iam.interfaces.rest.resources.SignInResource;
-import com.acme.center.platform.iam.interfaces.rest.resources.SignUpResource;
-import com.acme.center.platform.iam.interfaces.rest.resources.UserResource;
-import com.acme.center.platform.iam.interfaces.rest.transform.AuthenticatedUserResourceFromEntityAssembler;
-import com.acme.center.platform.iam.interfaces.rest.transform.SignInCommandFromResourceAssembler;
-import com.acme.center.platform.iam.interfaces.rest.transform.SignUpCommandFromResourceAssembler;
-import com.acme.center.platform.iam.interfaces.rest.transform.UserResourceFromEntityAssembler;
+
+import com.github.inncontrol.iam.domain.services.UserCommandService;
+import com.github.inncontrol.iam.interfaces.rest.resources.AuthenticatedUserResource;
+import com.github.inncontrol.iam.interfaces.rest.resources.SignInResource;
+import com.github.inncontrol.iam.interfaces.rest.resources.SignUpResource;
+import com.github.inncontrol.iam.interfaces.rest.resources.UserResource;
+import com.github.inncontrol.iam.interfaces.rest.transform.AuthenticatedUserResourceFromEntityAssembler;
+import com.github.inncontrol.iam.interfaces.rest.transform.SignInCommandFromResourceAssembler;
+import com.github.inncontrol.iam.interfaces.rest.transform.SignUpCommandFromResourceAssembler;
+import com.github.inncontrol.iam.interfaces.rest.transform.UserResourceFromEntityAssembler;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

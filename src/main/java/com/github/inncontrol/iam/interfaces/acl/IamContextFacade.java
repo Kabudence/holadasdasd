@@ -1,11 +1,12 @@
 package com.github.inncontrol.iam.interfaces.acl;
 
-import com.acme.center.platform.iam.domain.model.commands.SignUpCommand;
-import com.acme.center.platform.iam.domain.model.entities.Role;
-import com.acme.center.platform.iam.domain.model.queries.GetUserByIdQuery;
-import com.acme.center.platform.iam.domain.model.queries.GetUserByUsernameQuery;
-import com.acme.center.platform.iam.domain.services.UserCommandService;
-import com.acme.center.platform.iam.domain.services.UserQueryService;
+
+import com.github.inncontrol.iam.domain.model.commands.SignUpCommand;
+import com.github.inncontrol.iam.domain.model.entities.Role;
+import com.github.inncontrol.iam.domain.model.queries.GetUserByIdQuery;
+import com.github.inncontrol.iam.domain.model.queries.GetUserByUsernameQuery;
+import com.github.inncontrol.iam.domain.services.UserCommandService;
+import com.github.inncontrol.iam.domain.services.UserQueryService;
 import org.apache.logging.log4j.util.Strings;
 
 import java.util.ArrayList;
