@@ -25,7 +25,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
 @RequestMapping(value = "/api/v1/tasks", produces = APPLICATION_JSON_VALUE)
-@Tag(name = "Messages", description = "Messages Management Endpoints")
+@Tag(name = "Tasks", description = "Tasks Management Endpoints")
 @AllArgsConstructor
 public class TaskController {
 

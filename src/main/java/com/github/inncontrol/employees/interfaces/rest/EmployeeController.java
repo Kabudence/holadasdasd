@@ -17,7 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "/api/v2/employee", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/api/v1/employee", produces = MediaType.APPLICATION_JSON_VALUE)
 @Tag(name = "Employee", description = "Employee Management Endpoints")
 public class  EmployeeController {
 

@@ -1,6 +1,5 @@
 package com.github.inncontrol.iam.domain.model.aggregates;
 
-
 import com.github.inncontrol.iam.domain.model.entities.Role;
 import com.github.inncontrol.shared.domain.aggregates.AuditableAbstractAggregateRoot;
 import jakarta.persistence.*;
@@ -11,7 +10,6 @@ import lombok.Getter;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 
 @Entity
 public class User extends AuditableAbstractAggregateRoot<User> {

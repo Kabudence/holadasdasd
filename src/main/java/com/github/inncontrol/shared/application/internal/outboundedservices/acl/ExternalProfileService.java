@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class  ExternalProfileService {
+public class ExternalProfileService {
 
     private final ProfilesContextFacade profilesContextFacade;
 
