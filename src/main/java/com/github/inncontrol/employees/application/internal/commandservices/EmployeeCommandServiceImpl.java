@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class  EmployeeCommandServiceImpl    implements EmployeeCommandService {
+public class EmployeeCommandServiceImpl implements EmployeeCommandService {
 
     private final EmployeeRepository employeeRepository;
     private final ExternalProfileService externalProfileService;
@@ -25,9 +25,8 @@ public class  EmployeeCommandServiceImpl    implements EmployeeCommandService {
 
     @Override
     public Long handle(CreateEmployeeCommand command) {
-
-        var profileId= externalProfileService.fetchProfileIdByEmail(command.email());
-        if(profileId.isEmpty()){
+        var profileId = externalProfileService.fetchProfileIdByEmail(command.email());
+        if (profileId.isEmpty()) {
             profileId = externalProfileService.createProfile(command.firstName(), command.lastName(), command.email(), command.street(), command.number(), command.city(), command.postalCode(), command.country());
         } else {
             employeeRepository.findByProfileId(profileId.get()).ifPresent(student -> {
@@ -35,10 +34,9 @@ public class  EmployeeCommandServiceImpl    implements EmployeeCommandService {
             });
         }
         if (profileId.isEmpty()) throw new IllegalArgumentException("Unable to create profile");
-        var employee= new Employee(profileId.get(),command.salary(),command.contractInformation());
+        var employee = new Employee(profileId.get(), command.salary(), command.contractInformation());
         employeeRepository.save(employee);
         return employee.getId();
-
 
 
     }
@@ -54,7 +52,7 @@ public class  EmployeeCommandServiceImpl    implements EmployeeCommandService {
             if (result.isEmpty()) throw new IllegalArgumentException("Employee does not exist");
             var employeeToUpdate = result.get();
             try {
-                var updatedEmployee = employeeRepository.save(employeeToUpdate.updateInformation(command.salary(), command.contractInformation(),command.role()));
+                var updatedEmployee = employeeRepository.save(employeeToUpdate.updateInformation(command.salary(), command.contractInformation(), command.role()));
                 return Optional.of(updatedEmployee);
             } catch (Exception e) {
                 throw new IllegalArgumentException("Error while updating course: " + e.getMessage());
@@ -62,10 +60,11 @@ public class  EmployeeCommandServiceImpl    implements EmployeeCommandService {
         }
 
     }
+
     @Override
     public Long handle(DowngradeEmployeeCommand command) {
 
-        employeeRepository.findById(command.employeeId()).map(employee->{
+        employeeRepository.findById(command.employeeId()).map(employee -> {
             employee.downgradeToEmployee();
             employeeRepository.save(employee);
             return employee.getId();
@@ -75,14 +74,13 @@ public class  EmployeeCommandServiceImpl    implements EmployeeCommandService {
     }
 
 
-
     @Override
     public Long handle(AscendEmployeeCommand command) {
-        employeeRepository.findById(command.employeeId()).map(employee->{
+        employeeRepository.findById(command.employeeId()).map(employee -> {
             employee.ascendToManager();
             employeeRepository.save(employee);
             return employee.getId();
-        }).orElseThrow(()-> new RuntimeException("Employee no fount"));
+        }).orElseThrow(() -> new RuntimeException("Employee no fount"));
         return null;
     }
 }

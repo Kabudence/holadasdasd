@@ -5,6 +5,7 @@ import com.github.inncontrol.profiles.domain.model.commands.CreateProfileCommand
 import com.github.inncontrol.profiles.domain.model.valueobjects.EmailAddress;
 import com.github.inncontrol.profiles.domain.model.valueobjects.PersonName;
 import com.github.inncontrol.profiles.domain.model.valueobjects.StreetAddress;
+import com.github.inncontrol.profiles.domain.model.valueobjects.UserId;
 import com.github.inncontrol.shared.domain.aggregates.AuditableAbstractAggregateRoot;
 import jakarta.persistence.*;
 
@@ -24,6 +25,9 @@ public class Profile extends AuditableAbstractAggregateRoot<Profile> {
             @AttributeOverride(name = "postalCode", column = @Column(name = "address_postal_code")),
             @AttributeOverride(name = "country", column = @Column(name = "address_country"))})
     private StreetAddress address;
+
+    @Embedded
+    private UserId userId;
 
     public Profile(String firstName, String lastName, String email, String street, String number, String city, String postalCode, String country) {
         this.name = new PersonName(firstName, lastName);
