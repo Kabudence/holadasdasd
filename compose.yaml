@@ -1,6 +1,7 @@
 services:
   inn_app:
-    build: .
+    build: ./
+    image: ryzeon/inn_app:latest
     mem_limit: 512m
     ports:
       - "8045:8045"
