@@ -2,7 +2,7 @@ services:
   inn_app_mysql:
     image: 'mysql:latest'
     ports:
-      - "3307:3306"
+      - "3309:3309"
     environment:
       MYSQL_ROOT_PASSWORD: securepassword123
       MYSQL_PASSWORD: securepassword123
