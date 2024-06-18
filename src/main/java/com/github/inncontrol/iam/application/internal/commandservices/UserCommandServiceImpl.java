@@ -6,12 +6,15 @@ import com.github.inncontrol.iam.application.internal.outboundservices.tokens.To
 import com.github.inncontrol.iam.domain.model.aggregates.User;
 import com.github.inncontrol.iam.domain.model.commands.SignInCommand;
 import com.github.inncontrol.iam.domain.model.commands.SignUpCommand;
+import com.github.inncontrol.iam.domain.model.entities.Role;
+import com.github.inncontrol.iam.domain.model.valueobjects.Roles;
 import com.github.inncontrol.iam.domain.services.UserCommandService;
 import com.github.inncontrol.iam.infrastructure.persistence.jpa.repositories.RoleRepository;
 import com.github.inncontrol.iam.infrastructure.persistence.jpa.repositories.UserRepository;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -36,6 +39,11 @@ public class UserCommandServiceImpl implements UserCommandService {
                 .stream()
                 .map(role -> roleRepository.findByName(role.getName())
                         .orElseThrow(() -> new RuntimeException("Role not found"))).toList();
+        if (roles.isEmpty()) {
+            roles = roleRepository.findByName(Role.getDefaultRole().getName())
+                    .map(List::of)
+                    .orElseThrow(() -> new RuntimeException("Role not found"));
+        }
         var user = new User(command.username(), hashingService.encode(command.password()), roles);
         userRepository.save(user);
         return userRepository.findByUsername(command.username());
