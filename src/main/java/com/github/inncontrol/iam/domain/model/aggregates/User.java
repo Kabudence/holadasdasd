@@ -26,13 +26,14 @@ public class User extends AuditableAbstractAggregateRoot<User> {
 
     @Getter
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name =  "user_roles", joinColumns = @JoinColumn(name = "user_id"),
-    inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
     public User() {
         this.roles = new HashSet<>();
     }
+
     public User(String username, String password) {
         this.username = username;
         this.password = password;
@@ -55,5 +56,9 @@ public class User extends AuditableAbstractAggregateRoot<User> {
         var validatedRoles = Role.validateRoleSet(roles);
         this.roles.addAll(validatedRoles);
         return this;
+    }
+
+    public List<String> getSerializedRoles() {
+        return this.roles.stream().map(role -> role.getName().name()).toList();
     }
 }
