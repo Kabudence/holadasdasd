@@ -12,6 +12,10 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class OpenApiConfiguration {
+
+    @Value("${spring.profiles.active}")
+    private String activeProfile;
+    
     @Bean
     public OpenAPI learningPlatformOpenApi() {
         // General configuration
@@ -25,6 +29,14 @@ public class OpenApiConfiguration {
                 .externalDocs(new ExternalDocumentation()
                         .description("Inn Control platform wiki documentation")
                         .url("https://inncontrol-platform.wiki.github.io/docs"));
+
+         boolean isRunningInProd =  activeProfile.equals("prod") || activeProfile.equals("dev");
+
+        if (isRunningInProd) {
+            openApi.servers(Collections.singletonList(new Server().url("https://inncontrol-api.ryzeon.me")));
+        } else {
+            openApi.servers(Collections.singletonList(new Server().url("http://localhost:8080")));
+        }
 
         final String securitySchemeName = "bearerAuth";
 
