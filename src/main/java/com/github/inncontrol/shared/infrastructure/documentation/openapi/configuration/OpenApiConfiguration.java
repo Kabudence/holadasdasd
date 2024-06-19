@@ -34,7 +34,7 @@ public class OpenApiConfiguration {
                         .description("Inn Control platform wiki documentation")
                         .url("https://inncontrol-platform.wiki.github.io/docs"));
 
-         boolean isRunningInProd =  activeProfile.equals("prod") || activeProfile.equals("dev");
+         boolean isRunningInProd =  activeProfile.equals("prod");
 
         if (isRunningInProd) {
             openApi.servers(Collections.singletonList(new Server().url("https://inncontrol-api.ryzeon.me")));
