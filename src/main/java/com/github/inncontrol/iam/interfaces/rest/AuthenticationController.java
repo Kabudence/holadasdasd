@@ -1,6 +1,7 @@
 package com.github.inncontrol.iam.interfaces.rest;
 
 
+import com.github.inncontrol.iam.domain.model.commands.RefreshTokenCommand;
 import com.github.inncontrol.iam.domain.services.UserCommandService;
 import com.github.inncontrol.iam.interfaces.rest.resources.AuthenticatedUserResource;
 import com.github.inncontrol.iam.interfaces.rest.resources.SignInResource;
@@ -14,16 +15,13 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * AuthenticationController
  * <p>
- *     This controller is responsible for handling authentication requests.
- *     It exposes two endpoints:
+ * This controller is responsible for handling authentication requests.
+ * It exposes two endpoints:
  *     <ul>
  *         <li>POST /api/v1/authentication/sign-in</li>
  *         <li>POST /api/v1/authentication/sign-up</li>
@@ -42,6 +40,7 @@ public class AuthenticationController {
 
     /**
      * Handles the sign-in request.
+     *
      * @param signInResource the sign-in request body.
      * @return the authenticated user resource.
      */
@@ -58,6 +57,7 @@ public class AuthenticationController {
 
     /**
      * Handles the sign-up request.
+     *
      * @param signUpResource the sign-up request body.
      * @return the created user resource.
      */
@@ -71,5 +71,16 @@ public class AuthenticationController {
         var userResource = UserResourceFromEntityAssembler.toResourceFromEntity(user.get());
         return new ResponseEntity<>(userResource, HttpStatus.CREATED);
 
+    }
+
+    @PostMapping("/verify-token/{token}")
+    public ResponseEntity<AuthenticatedUserResource> verifyToken(@PathVariable String token) {
+        var refreshTokenCommand = new RefreshTokenCommand(token);
+        var authenticatedUser = userCommandService.handle(refreshTokenCommand);
+        if (authenticatedUser.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        var authenticatedUserResource = AuthenticatedUserResourceFromEntityAssembler.toResourceFromEntity(authenticatedUser.get().getLeft(), authenticatedUser.get().getRight());
+        return ResponseEntity.ok(authenticatedUserResource);
     }
 }
