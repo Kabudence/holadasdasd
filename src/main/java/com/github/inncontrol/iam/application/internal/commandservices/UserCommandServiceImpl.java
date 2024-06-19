@@ -4,6 +4,7 @@ package com.github.inncontrol.iam.application.internal.commandservices;
 import com.github.inncontrol.iam.application.internal.outboundservices.hashing.HashingService;
 import com.github.inncontrol.iam.application.internal.outboundservices.tokens.TokenService;
 import com.github.inncontrol.iam.domain.model.aggregates.User;
+import com.github.inncontrol.iam.domain.model.commands.RefreshTokenCommand;
 import com.github.inncontrol.iam.domain.model.commands.SignInCommand;
 import com.github.inncontrol.iam.domain.model.commands.SignUpCommand;
 import com.github.inncontrol.iam.domain.model.entities.Role;
@@ -22,7 +23,7 @@ public class UserCommandServiceImpl implements UserCommandService {
     private final UserRepository userRepository;
     private final HashingService hashingService;
     private final TokenService tokenService;
-    private final  RoleRepository roleRepository;
+    private final RoleRepository roleRepository;
 
     public UserCommandServiceImpl(UserRepository userRepository, HashingService hashingService, TokenService tokenService, RoleRepository roleRepository) {
         this.userRepository = userRepository;
@@ -55,6 +56,15 @@ public class UserCommandServiceImpl implements UserCommandService {
         if (user.isEmpty()) throw new RuntimeException("User not found");
         if (!hashingService.matches(command.password(), user.get().getPassword()))
             throw new RuntimeException("Invalid password");
+        var token = tokenService.generateToken(user.get().getUsername());
+        return Optional.of(ImmutablePair.of(user.get(), token));
+    }
+
+    @Override
+    public Optional<ImmutablePair<User, String>> handle(RefreshTokenCommand command) {
+        String username = tokenService.getUsernameFromToken(command.token());
+        var user = userRepository.findByUsername(username);
+        if (user.isEmpty()) throw new RuntimeException("User not found");
         var token = tokenService.generateToken(user.get().getUsername());
         return Optional.of(ImmutablePair.of(user.get(), token));
     }
