@@ -6,6 +6,6 @@ import com.github.inncontrol.profiles.interfaces.rest.resources.CreateProfileRes
 
 public class CreateProfileCommandFromResourceAssembler {
     public static CreateProfileCommand toCommandFromResource(CreateProfileResource resource) {
-        return new CreateProfileCommand(resource.firstName(), resource.lastName(), resource.email(), resource.street(), resource.number(), resource.city(), resource.postalCode(), resource.country());
+        return new CreateProfileCommand(resource.firstName(), resource.lastName(), resource.email());
     }
 }
