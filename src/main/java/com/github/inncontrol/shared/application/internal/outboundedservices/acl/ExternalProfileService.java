@@ -22,8 +22,8 @@ public class ExternalProfileService {
     }
 
 
-    public Optional<ProfileId> createProfile(String firstName, String lastName, String email, String street, String number, String city, String state, String zipCode) {
-        var profileId = profilesContextFacade.createProfile(firstName, lastName, email, street, number, city, state, zipCode);
+    public Optional<ProfileId> createProfile(String firstName, String lastName, String email) {
+        var profileId = profilesContextFacade.createProfile(firstName, lastName, email);
         if (profileId == 0L) return Optional.empty();
         return Optional.of(new ProfileId(profileId));
     }

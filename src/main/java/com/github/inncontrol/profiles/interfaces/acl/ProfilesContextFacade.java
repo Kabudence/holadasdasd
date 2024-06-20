@@ -6,6 +6,7 @@ import com.github.inncontrol.profiles.domain.model.queries.GetProfileByEmailQuer
 import com.github.inncontrol.profiles.domain.model.valueobjects.EmailAddress;
 import com.github.inncontrol.profiles.domain.services.ProfileCommandService;
 import com.github.inncontrol.profiles.domain.services.ProfileQueryService;
+import com.github.inncontrol.shared.application.internal.outboundedservices.acl.ExternalUserService;
 import org.springframework.stereotype.Service;
 
 /**
@@ -21,11 +22,14 @@ import org.springframework.stereotype.Service;
 public class ProfilesContextFacade {
     private final ProfileCommandService profileCommandService;
     private final ProfileQueryService profileQueryService;
+    private final ExternalUserService externalUserService;
 
-    public ProfilesContextFacade(ProfileCommandService profileCommandService, ProfileQueryService profileQueryService) {
+    public ProfilesContextFacade(ProfileCommandService profileCommandService, ProfileQueryService profileQueryService, ExternalUserService externalUserService) {
         this.profileCommandService = profileCommandService;
         this.profileQueryService = profileQueryService;
+        this.externalUserService = externalUserService;
     }
+
 
     /**
      * Creates a new Profile
@@ -33,15 +37,12 @@ public class ProfilesContextFacade {
      * @param firstName the first name
      * @param lastName the last name
      * @param email the email
-     * @param street the street address
-     * @param number the number
-     * @param city the city
-     * @param state the state
-     * @param zipCode the zip code
+
      * @return the profile id
      */
-    public Long createProfile(String firstName, String lastName, String email, String street, String number, String city, String state, String zipCode) {
-        var createProfileCommand = new CreateProfileCommand(firstName, lastName, email, street, number, city, state, zipCode);
+    public Long createProfile(String firstName, String lastName, String email) {
+        var userId=externalUserService.fetchUserIdByUsername(email);
+        var createProfileCommand = new CreateProfileCommand(firstName, lastName,email,userId.orElseThrow().userId());
         var profile = profileCommandService.handle(createProfileCommand);
         if (profile.isEmpty()) return 0L;
         return profile.get().getId();

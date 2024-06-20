@@ -9,11 +9,6 @@ public class CreateEmployeeCommandFromResourceAssembler {
                 resource.firstName(),
                 resource.lastName(),
                 resource.email(),
-                resource.street(),
-                resource.number(),
-                resource.city(),
-                resource.postalCode(),
-                resource.country(),
                 resource.salary(),
                 CreateContractInformationFromResourceAssembler.toContractFromResource(resource.contractinformationResource())
         );

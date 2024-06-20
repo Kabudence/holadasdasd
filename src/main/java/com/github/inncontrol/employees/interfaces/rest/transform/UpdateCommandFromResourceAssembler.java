@@ -10,7 +10,7 @@ public class UpdateCommandFromResourceAssembler {
                 resource.email(),
                 resource.salary(),
                 CreateContractInformationFromResourceAssembler.toContractFromResource(resource.contractinformationResource())
-,                resource.role()
+,               resource.role()
         );
 
     }

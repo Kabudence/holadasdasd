@@ -5,7 +5,7 @@ import com.github.inncontrol.profiles.interfaces.rest.resources.ProfileResource;
 
 public class ProfileResourceFromEntityAssembler {
     public static ProfileResource toResourceFromEntity(Profile entity) {
-        return new ProfileResource(entity.getId(), entity.getFullName(), entity.getEmailAddress());
+        return new ProfileResource(entity.getId(), entity.getFullName(), entity.getEmailAddress(), entity.getUserId());
 
     }
 }

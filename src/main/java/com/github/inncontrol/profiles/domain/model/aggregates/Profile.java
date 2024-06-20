@@ -16,21 +16,23 @@ public class Profile extends AuditableAbstractAggregateRoot<Profile> {
     @Embedded
     private EmailAddress email;
 
-
-
     @Embedded
     private UserId userId;
 
-    public Profile(String firstName, String lastName, String email) {
+    public Profile(String firstName, String lastName, String email,Long userId) {
         this.name = new PersonName(firstName, lastName);
         this.email = new EmailAddress(email);
+        this.userId=new UserId(userId);
 
     }
 
     public Profile(CreateProfileCommand command) {
         this.name = new PersonName(command.firstName(), command.lastName());
         this.email = new EmailAddress(command.email());
+        this.userId=new UserId(command.userId());
+
     }
+
     public Profile() {
 
     }
@@ -48,5 +50,7 @@ public class Profile extends AuditableAbstractAggregateRoot<Profile> {
     public String getFullName() { return name.getFullName(); }
 
     public String getEmailAddress() { return email.address(); }
+
+    public Long getUserId() { return userId.userId(); }
 
 }
