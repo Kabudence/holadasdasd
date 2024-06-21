@@ -8,9 +8,10 @@ public class CreateEmployeeCommandFromResourceAssembler {
         return new CreateEmployeeCommand(
                 resource.firstName(),
                 resource.lastName(),
+                resource.phoneNumber(),
                 resource.email(),
                 resource.salary(),
-                CreateContractInformationFromResourceAssembler.toContractFromResource(resource.contractinformationResource())
+                CreateContractInformationFromResourceAssembler.toContractFromResource(resource.contractInformationResource())
         );
     }
 }

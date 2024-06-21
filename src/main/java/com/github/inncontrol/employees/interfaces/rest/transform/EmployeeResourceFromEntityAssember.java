@@ -8,6 +8,7 @@ public class EmployeeResourceFromEntityAssember {
     public static EmployeeResource toResourceFromEntity(Employee entity){
 
         return new EmployeeResource(
+                entity.getId(),
                 entity.getRole(),
                 entity.getSalary(),
                 entity.getInitiationContract(),

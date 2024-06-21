@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service;
  * It is used by the other contexts to interact with the Profile context.
  * It is implemented as part of an anti-corruption layer (ACL) to be consumed by other contexts.
  * </p>
- *
  */
 @Service
 public class ProfilesContextFacade {
@@ -35,14 +34,13 @@ public class ProfilesContextFacade {
      * Creates a new Profile
      *
      * @param firstName the first name
-     * @param lastName the last name
-     * @param email the email
-
+     * @param lastName  the last name
+     * @param email     the email
      * @return the profile id
      */
-    public Long createProfile(String firstName, String lastName, String email) {
-        var userId=externalUserService.fetchUserIdByUsername(email);
-        var createProfileCommand = new CreateProfileCommand(firstName, lastName,email,userId.orElseThrow().userId());
+    public Long createProfile(String firstName, String lastName, String phoneNumber,String email) {
+        var userId = externalUserService.fetchUserIdByUsername(email);
+        var createProfileCommand = new CreateProfileCommand(firstName, lastName, phoneNumber,email, userId.orElseThrow().userId());
         var profile = profileCommandService.handle(createProfileCommand);
         if (profile.isEmpty()) return 0L;
         return profile.get().getId();

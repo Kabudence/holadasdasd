@@ -7,11 +7,15 @@ import com.github.inncontrol.profiles.domain.model.valueobjects.PersonName;
 import com.github.inncontrol.profiles.domain.model.valueobjects.UserId;
 import com.github.inncontrol.shared.domain.aggregates.AuditableAbstractAggregateRoot;
 import jakarta.persistence.*;
+import lombok.Getter;
 
 @Entity
 public class Profile extends AuditableAbstractAggregateRoot<Profile> {
     @Embedded
     private PersonName name;
+
+    @Getter
+    private String phoneNumber;
 
     @Embedded
     private EmailAddress email;
@@ -28,6 +32,7 @@ public class Profile extends AuditableAbstractAggregateRoot<Profile> {
 
     public Profile(CreateProfileCommand command) {
         this.name = new PersonName(command.firstName(), command.lastName());
+        this.phoneNumber = command.phoneNumber();
         this.email = new EmailAddress(command.email());
         this.userId=new UserId(command.userId());
 
