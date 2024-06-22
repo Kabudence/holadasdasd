@@ -27,7 +27,7 @@ public class EmployeeCommandServiceImpl implements EmployeeCommandService {
     public Long handle(CreateEmployeeCommand command) {
         var profileId = externalProfileService.fetchProfileIdByEmail(command.email());
         if (profileId.isEmpty()) {
-            profileId = externalProfileService.createProfile(command.firstName(), command.lastName(), command.email(), command.street(), command.number(), command.city(), command.postalCode(), command.country());
+            profileId = externalProfileService.createProfile(command.firstName(), command.lastName(),command.phoneNumber(), command.email());
         } else {
             employeeRepository.findByProfileId(profileId.get()).ifPresent(student -> {
                 throw new IllegalArgumentException("Employee already exists");
@@ -37,8 +37,6 @@ public class EmployeeCommandServiceImpl implements EmployeeCommandService {
         var employee = new Employee(profileId.get(), command.salary(), command.contractInformation());
         employeeRepository.save(employee);
         return employee.getId();
-
-
     }
 
     @Override

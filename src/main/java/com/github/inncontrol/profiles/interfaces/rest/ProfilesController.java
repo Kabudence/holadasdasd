@@ -1,6 +1,5 @@
 package com.github.inncontrol.profiles.interfaces.rest;
 
-
 import com.github.inncontrol.profiles.domain.model.queries.GetAllProfilesQuery;
 import com.github.inncontrol.profiles.domain.model.queries.GetProfileByIdQuery;
 import com.github.inncontrol.profiles.domain.services.ProfileCommandService;
