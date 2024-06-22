@@ -12,6 +12,7 @@ import lombok.Getter;
 @Entity
 public class Profile extends AuditableAbstractAggregateRoot<Profile> {
     @Embedded
+    @Getter
     private PersonName name;
 
     @Getter

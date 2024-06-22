@@ -67,6 +67,7 @@ public class EmployeeController {
     @GetMapping
     public ResponseEntity<EmployeeResource> getEmployeeByQuery(@RequestParam Map<String, String> queries) {
         if (queries.containsKey("email")) {
+            System.out.println(queries.get("email"));
             var profileId = profilesContextFacade.fetchProfileIdByEmail(queries.get("email"));
             if (profileId == 0) return ResponseEntity.notFound().build();
             var getEmployeeById = new GetEmployeeByProfileIdQuery(profileId);
