@@ -11,7 +11,8 @@ public class CreateEmployeeCommandFromResourceAssembler {
                 resource.phoneNumber(),
                 resource.email(),
                 resource.salary(),
-                CreateContractInformationFromResourceAssembler.toContractFromResource(resource.contractInformationResource())
+                CreateContractInformationFromResourceAssembler.toContractFromResource(resource.contractInformationResource()),
+                resource.role()
         );
     }
 }

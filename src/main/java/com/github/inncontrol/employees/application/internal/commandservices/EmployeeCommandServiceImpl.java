@@ -1,5 +1,6 @@
 package com.github.inncontrol.employees.application.internal.commandservices;
 
+import com.github.inncontrol.employees.domain.model.valueobjects.Role;
 import com.github.inncontrol.shared.application.internal.outboundedservices.acl.ExternalProfileService;
 import com.github.inncontrol.employees.domain.model.aggregates.Employee;
 import com.github.inncontrol.employees.domain.model.commands.AscendEmployeeCommand;
@@ -34,7 +35,8 @@ public class EmployeeCommandServiceImpl implements EmployeeCommandService {
             });
         }
         if (profileId.isEmpty()) throw new IllegalArgumentException("Unable to create profile");
-        var employee = new Employee(profileId.get(), command.salary(), command.contractInformation());
+        var role = Role.valueOf(command.role().toUpperCase());
+        var employee = new Employee(profileId.get(), command.salary(), command.contractInformation(), role);
         employeeRepository.save(employee);
         return employee.getId();
     }

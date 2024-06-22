@@ -11,7 +11,7 @@ import lombok.Getter;
 import java.util.Date;
 
 @Entity
-public class  Employee extends AuditableAbstractAggregateRoot<Employee> {
+public class Employee extends AuditableAbstractAggregateRoot<Employee> {
 
     @Embedded
     private ContractInformation contract;
@@ -26,7 +26,8 @@ public class  Employee extends AuditableAbstractAggregateRoot<Employee> {
     @Embedded
     private ProfileId profileId;
 
-    public Employee() {}
+    public Employee() {
+    }
 
     public Employee(ContractInformation contract, Role role, SalaryEmployee salary) {
         this.contract = contract;
@@ -34,21 +35,28 @@ public class  Employee extends AuditableAbstractAggregateRoot<Employee> {
         this.salary = salary;
     }
 
-
-    public Employee(ProfileId profileId,Double salary,ContractInformation contract) {
+    public Employee(ProfileId profileId, Double salary, ContractInformation contract) {
         this();
-        this.salary= new SalaryEmployee(salary);
+        this.salary = new SalaryEmployee(salary);
         this.profileId = profileId;
         this.role = role != null ? role : Role.EMPLOYEE;
         this.contract = contract;
+    }
 
+    public Employee(ProfileId profileId, Double salary, ContractInformation contract, Role role) {
+        this();
+        this.salary = new SalaryEmployee(salary);
+        this.profileId = profileId;
+        this.role = role;
+        this.contract = contract;
     }
 
 
-    public Employee updateInformation(Double salary,ContractInformation contract,Role role){
-        this.salary= new SalaryEmployee(salary);
+
+    public Employee updateInformation(Double salary, ContractInformation contract, Role role) {
+        this.salary = new SalaryEmployee(salary);
         this.contract = contract;
-        this.role=role;
+        this.role = role;
         return this;
     }
 
