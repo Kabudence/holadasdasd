@@ -30,10 +30,11 @@ public class TaskCommandServiceImpl implements TaskCommandService {
             throw new IllegalArgumentException("Employee with email not found");
         }
         var task = new Task(
-            new TaskInformation(command.title(), command.description()),
-            TaskStatus.SCHEDULED,
-            command.dueDate(),
-            employeeId.get()
+                new TaskInformation(command.title(), command.description()),
+                TaskStatus.SCHEDULED,
+                command.dueDate(),
+                employeeId.get(),
+                command.employeeEmail()
         );
         return Optional.of(taskRepository.save(task));
     }
