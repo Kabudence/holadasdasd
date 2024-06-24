@@ -2,9 +2,9 @@ package com.github.inncontrol.task.application.internal.queryservice;
 
 import java.util.*;
 
+import com.github.inncontrol.shared.application.internal.outboundedservices.acl.ExternalEmployeeService;
 import org.springframework.stereotype.Service;
 
-import com.github.inncontrol.task.application.internal.outboundservice.acl.ExternalEmployeeService;
 import com.github.inncontrol.task.domain.model.aggregates.Task;
 import com.github.inncontrol.task.domain.model.queries.GetAllTaskForEmployeeQuery;
 import com.github.inncontrol.task.domain.model.queries.GetAllTaskFromDatesForEmployeeQuery;

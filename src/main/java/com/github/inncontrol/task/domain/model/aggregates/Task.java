@@ -29,14 +29,18 @@ public class Task extends AuditableAbstractAggregateRoot<Task> {
     @Getter
     private EmployeeIdentifier employee;
 
+    @Getter
+    private String employeeMail;
+
     public Task() {
     }
 
-    public Task(TaskInformation taskInformation, TaskStatus status, Date dueDate, EmployeeIdentifier employee) {
+    public Task(TaskInformation taskInformation, TaskStatus status, Date dueDate, EmployeeIdentifier employee, String employeeMail) {
         this.taskInformation = taskInformation;
         this.status = status;
         this.dueDate = dueDate;
         this.employee = employee;
+        this.employeeMail = employeeMail;
     }
 
     public void complete() {
