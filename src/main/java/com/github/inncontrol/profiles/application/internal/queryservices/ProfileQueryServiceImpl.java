@@ -27,6 +27,7 @@ public class ProfileQueryServiceImpl implements ProfileQueryService {
 
     @Override
     public Optional<Profile> handle(GetProfileByEmailQuery query) {
+        System.out.println("ProfileQueryServiceImpl.handle" + query.emailAddress());
         return profileRepository.findByEmail(query.emailAddress());
     }
 

@@ -25,35 +25,35 @@ import java.util.Optional;
 import static org.springframework.http.HttpStatus.CREATED;
 
 @RestController
-@RequestMapping(value="api/v1/inventory", produces = MediaType.APPLICATION_JSON_VALUE)
-@Tag(name="Inventory", description = "Inventory Management Endpoints")
+@RequestMapping(value = "api/v1/inventory", produces = MediaType.APPLICATION_JSON_VALUE)
+@Tag(name = "Inventory", description = "Inventory Management Endpoints")
 public class InventoryController {
 
-private final InventoryQueryService inventoryQueryService;
-private final InventoryCommandService inventoryCommandService;
+    private final InventoryQueryService inventoryQueryService;
+    private final InventoryCommandService inventoryCommandService;
 
-public InventoryController(InventoryQueryService inventoryQueryService, InventoryCommandService inventoryCommandService) {
-    this.inventoryQueryService = inventoryQueryService;
-    this.inventoryCommandService = inventoryCommandService;
-}
+    public InventoryController(InventoryQueryService inventoryQueryService, InventoryCommandService inventoryCommandService) {
+        this.inventoryQueryService = inventoryQueryService;
+        this.inventoryCommandService = inventoryCommandService;
+    }
 
     @PostMapping
     public ResponseEntity<InventoryResource> createItem(
             @RequestBody CreateInventoryResource CreateInventoryResource) {
-            Optional<Inventory> InventorySource = inventoryCommandService
-                    .handle(CreateInventoryCommandFromResourceAssembler.toCommandFromResource(CreateInventoryResource));
-            return InventorySource.map(source ->
-                            new ResponseEntity<>(InventoryResourceFromEntityAssembler
-                                    .toResourceFromEntity(source), CREATED))
-                    .orElseGet(() -> ResponseEntity.badRequest().build());
-        }
+        Optional<Inventory> InventorySource = inventoryCommandService
+                .handle(CreateInventoryCommandFromResourceAssembler.toCommandFromResource(CreateInventoryResource));
+        return InventorySource.map(source ->
+                        new ResponseEntity<>(InventoryResourceFromEntityAssembler
+                                .toResourceFromEntity(source), CREATED))
+                .orElseGet(() -> ResponseEntity.badRequest().build());
+    }
 
     @GetMapping
     public ResponseEntity<List<InventoryResource>> getAllItems() {
-    List<Inventory> inventorySource = inventoryQueryService.handle(new GetAllItemsQuery());
-    var inventoryResource = inventorySource
-            .stream().map(InventoryResourceFromEntityAssembler::toResourceFromEntity).toList();
-    return ResponseEntity.ok(inventoryResource);
+        List<Inventory> inventorySource = inventoryQueryService.handle(new GetAllItemsQuery());
+        var inventoryResource = inventorySource
+                .stream().map(InventoryResourceFromEntityAssembler::toResourceFromEntity).toList();
+        return ResponseEntity.ok(inventoryResource);
     }
 
     @GetMapping("/brand")
@@ -69,30 +69,30 @@ public InventoryController(InventoryQueryService inventoryQueryService, Inventor
 
     @GetMapping("/{inventoryId}")
     public ResponseEntity<InventoryResource> getInventoryById(@PathVariable Long inventoryId) {
-    var GetItemsByIdQuery = new GetItemByIdQuery(inventoryId);
-    var Inventory = inventoryQueryService.handle(GetItemsByIdQuery);
-    if (Inventory.isEmpty()) return ResponseEntity.notFound().build();
-    var inventoryResource = InventoryResourceFromEntityAssembler.toResourceFromEntity(Inventory.get());
-    return ResponseEntity.ok(inventoryResource);
+        var GetItemsByIdQuery = new GetItemByIdQuery(inventoryId);
+        var Inventory = inventoryQueryService.handle(GetItemsByIdQuery);
+        if (Inventory.isEmpty()) return ResponseEntity.notFound().build();
+        var inventoryResource = InventoryResourceFromEntityAssembler.toResourceFromEntity(Inventory.get());
+        return ResponseEntity.ok(inventoryResource);
 
     }
 
 
     @PutMapping("/{inventoryId}")
     public ResponseEntity<InventoryResource> updateInventory(@PathVariable Long inventoryId, @RequestBody UpdateInventoryResource updateInventoryResource) {
-    var UpdateInventoryCommand = UpdateInventoryCommandFromResourceAssembler.toCommandFromResource(inventoryId, updateInventoryResource);
-    var updatedInventory = inventoryCommandService.handle(UpdateInventoryCommand);
-    if (updatedInventory.isEmpty()) return ResponseEntity.notFound().build();
+        var UpdateInventoryCommand = UpdateInventoryCommandFromResourceAssembler.toCommandFromResource(inventoryId, updateInventoryResource);
+        var updatedInventory = inventoryCommandService.handle(UpdateInventoryCommand);
+        if (updatedInventory.isEmpty()) return ResponseEntity.notFound().build();
 
-    var inventoryResource =InventoryResourceFromEntityAssembler.toResourceFromEntity(updatedInventory.get());
-    return ResponseEntity.ok(inventoryResource);
+        var inventoryResource = InventoryResourceFromEntityAssembler.toResourceFromEntity(updatedInventory.get());
+        return ResponseEntity.ok(inventoryResource);
     }
 
     @DeleteMapping("/{inventoryId}")
     public ResponseEntity<?> deleteInventory(@PathVariable Long inventoryId) {
-    var deleteItemsCommand = new DeleteItemsCommand(inventoryId);
-    inventoryCommandService.handle(deleteItemsCommand);
-    return ResponseEntity.ok("Course with id " + inventoryId + " has been deleted.");
+        var deleteItemsCommand = new DeleteItemsCommand(inventoryId);
+        inventoryCommandService.handle(deleteItemsCommand);
+        return ResponseEntity.ok("Course with id " + inventoryId + " has been deleted.");
     }
 
 

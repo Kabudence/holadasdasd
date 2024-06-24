@@ -13,10 +13,11 @@ public class CreateTaskCommandFromResourceAssembler {
     }
 
     public static CreateTaskCommand toCommandFromResource(TaskCreateCommandResource resource) {
+
         return new CreateTaskCommand(
-                resource.employeeEmail(),
                 resource.title(),
                 resource.description(),
+                resource.employeeEmail(),
                 parseDate(resource.dueDate())
         );
     }

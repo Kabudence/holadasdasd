@@ -2,9 +2,11 @@ package com.github.inncontrol.task.application.internal.commandservice;
 
 import java.util.Optional;
 
+import com.github.inncontrol.shared.application.internal.outboundedservices.acl.ExternalEmployeeService;
+import com.github.inncontrol.task.domain.model.commands.DeleteTaskCommand;
+import com.github.inncontrol.task.domain.model.valueobjects.EmployeeIdentifier;
 import org.springframework.stereotype.Service;
 
-import com.github.inncontrol.task.application.internal.outboundservice.acl.ExternalEmployeeService;
 import com.github.inncontrol.task.domain.model.aggregates.Task;
 import com.github.inncontrol.task.domain.model.commands.CompleteTaskCommand;
 import com.github.inncontrol.task.domain.model.commands.CreateTaskCommand;
@@ -59,5 +61,10 @@ public class TaskCommandServiceImpl implements TaskCommandService {
         var taskObject = task.get();
         taskObject.complete();
         taskRepository.save(taskObject);
+    }
+
+    @Override
+    public void handle(DeleteTaskCommand command) {
+        taskRepository.deleteById(command.id());
     }
 }

@@ -1,7 +1,9 @@
 package com.github.inncontrol.task.interfaces.rest;
 
 import com.github.inncontrol.task.domain.model.commands.CompleteTaskCommand;
+import com.github.inncontrol.task.domain.model.commands.DeleteTaskCommand;
 import com.github.inncontrol.task.domain.model.commands.StartTaskCommand;
+import com.github.inncontrol.task.domain.model.queries.GetAllTaskForEmployeeQuery;
 import com.github.inncontrol.task.domain.model.queries.GetAllTaskQuery;
 import com.github.inncontrol.task.domain.model.queries.GetTaskByIdQuery;
 import com.github.inncontrol.task.domain.services.TaskCommandService;
@@ -40,6 +42,22 @@ public class TaskController {
                 .map(TaskResourceFromEntityAssembler::toResourceFromEntity)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/employee/{email}")
+    public ResponseEntity<List<TaskResource>> getAllTasksForEmployee(@PathVariable String email) {
+        var query = new GetAllTaskForEmployeeQuery(email);
+        var tasks = taskQueryService.handle(query)
+                .stream()
+                .map(TaskResourceFromEntityAssembler::toResourceFromEntity)
+                .toList();
+        return ResponseEntity.ok(tasks);
+    }
+
+    @DeleteMapping("{id}")
+    public void deleteTask(@PathVariable Long id) {
+        var command = new DeleteTaskCommand(id);
+        taskCommandService.handle(command);
     }
 
     @GetMapping
@@ -93,4 +111,10 @@ public class TaskController {
         var command = new CompleteTaskCommand(id);
         taskCommandService.handle(command);
     }
+
+//    @PutMapping("{id}")
+//    public void updateTask(@PathVariable Long id, @RequestBody TaskResource resource) {
+//        var command = CreateTaskCommandFromResourceAssembler.toCommandFromResource(resource);
+//        taskCommandService.handle(command);
+//    }
 }
