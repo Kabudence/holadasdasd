@@ -5,6 +5,7 @@ public record MessageResource(
         Long senderId,
         Long receiverId,
         String message,
-        String createdAt
+        String createdAt,
+        String status
 ) {
 }

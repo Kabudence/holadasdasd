@@ -13,7 +13,8 @@ public class MessageResourceFromEntityAssembler {
                 message.getSender().profileId(),
                 message.getReceiver().profileId(),
                 message.getContent(),
-                message.getNiceCreatedAt()
+                message.getNiceCreatedAt(),
+                message.getStatus().toString()
         );
     }
 
