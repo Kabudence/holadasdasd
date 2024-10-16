@@ -5,4 +5,4 @@ services:
     buildCommand: ./mvnw clean install
     startCommand: java -jar target/inncontrol-backend-0.0.1-SNAPSHOT.jar
     environment:
-      javaVersion: 21
+      javaVersion: 17
