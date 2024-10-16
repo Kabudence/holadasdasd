@@ -1,6 +1,7 @@
 package com.github.inncontrol.employees.interfaces.rest;
 
 
+import com.github.inncontrol.employees.domain.model.queries.GetAllEmployeeQuery;
 import com.github.inncontrol.employees.domain.model.queries.GetEmployeeByIdQuery;
 import com.github.inncontrol.employees.domain.model.queries.GetEmployeeByProfileIdQuery;
 import com.github.inncontrol.employees.domain.services.EmployeeCommandService;
@@ -18,6 +19,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -64,19 +66,29 @@ public class EmployeeController {
         return ResponseEntity.ok(employeeResource);
     }
 
+//    @GetMapping
+//    public ResponseEntity<EmployeeResource> getEmployeeByQuery(@RequestParam Map<String, String> queries) {
+//        if (queries.containsKey("email")) {
+//            System.out.println(queries.get("email"));
+//            var profileId = profilesContextFacade.fetchProfileIdByEmail(queries.get("email"));
+//            if (profileId == 0) return ResponseEntity.notFound().build();
+//            var getEmployeeById = new GetEmployeeByProfileIdQuery(profileId);
+//            var employee = employeeQueryService.handle(getEmployeeById);
+//            var employeeResource = EmployeeResourceFromEntityAssember.toResourceFromEntity(employee.orElseThrow());
+//            return ResponseEntity.ok(employeeResource);
+//        } else {
+//            return ResponseEntity.badRequest().build();
+//        }
+//    }
+
     @GetMapping
-    public ResponseEntity<EmployeeResource> getEmployeeByQuery(@RequestParam Map<String, String> queries) {
-        if (queries.containsKey("email")) {
-            System.out.println(queries.get("email"));
-            var profileId = profilesContextFacade.fetchProfileIdByEmail(queries.get("email"));
-            if (profileId == 0) return ResponseEntity.notFound().build();
-            var getEmployeeById = new GetEmployeeByProfileIdQuery(profileId);
-            var employee = employeeQueryService.handle(getEmployeeById);
-            var employeeResource = EmployeeResourceFromEntityAssember.toResourceFromEntity(employee.orElseThrow());
-            return ResponseEntity.ok(employeeResource);
-        } else {
-            return ResponseEntity.badRequest().build();
-        }
+    public ResponseEntity<List<EmployeeResource>> getAllEmployeeQuery() {
+        var getAllEmployeeQuery = new GetAllEmployeeQuery();
+        var employees = employeeQueryService.handle(getAllEmployeeQuery);
+        var employeeResources = employees.stream()
+                .map(EmployeeResourceFromEntityAssember::toResourceFromEntity)
+                .toList();
+        return ResponseEntity.ok(employeeResources);
     }
 
     @PutMapping("/{employeeId}")

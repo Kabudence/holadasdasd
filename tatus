@@ -1,0 +1,94 @@
+* [33m80a83fa[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/develop[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;31mgithub/develop[m[33m, [m[1;32mdevelop[m[33m)[m feat(message): added message status.
+*   [33m3c5e354[m Merge pull request #12 from upc-pre-20241-si729-wx55-eabmodel/feature/task-front-impl
+[32m|[m[33m\[m  
+[32m|[m * [33m3cb19e3[m fix(acl): fixed some acl issues.
+[32m|[m * [33m64ec413[m feat(task): improve resources for task endpoints.
+[32m|[m[32m/[m  
+* [33m2697ea9[m fix(employee): role doesn't  associate.
+*   [33m8f028fa[m Merge pull request #11 from upc-pre-20241-si729-wx55-eabmodel/feature/Inventory
+[34m|[m[35m\[m  
+[34m|[m * [33m05de800[m fix(Inventory): Made changes to the resource
+* [35m|[m [33mb560c95[m fix(employee): role doesn't  associate.
+* [35m|[m   [33m9d01d30[m Merge pull request #10 from upc-pre-20241-si729-wx55-eabmodel/feature/iam-employees-managment
+[36m|[m[1;31m\[m [35m\[m  
+[36m|[m * [35m|[m [33m742be52[m feat(employee): added more variables to employee resource.
+[36m|[m * [35m|[m [33m0b2c145[m feat(iam): added profile get endpoint.
+[36m|[m * [35m|[m [33m1eae6e2[m feat(StreetAddress):add UserId to createCommandProfile parameter for logic business
+[36m|[m * [35m|[m [33m71fa9bb[m feat(StreetAddress):elimination of tel value object StreetAddress.java in order to better adapt our business logic and related needs to the needs of our customers.
+[36m|[m * [35m|[m [33m2d19d61[m feat(StreetAddress):elimination of tel value object StreetAddress.java in order to better adapt our business logic and related needs to the needs of our customers.
+[36m|[m * [35m|[m [33ma91badc[m feat(StreetAddress):elimination of tel value object StreetAddress.java in order to better adapt our business logic and related needs to the needs of our customers.
+[36m|[m[36m/[m [35m/[m  
+* [35m|[m [33m5656076[m fix: dev swagger.
+* [35m|[m [33m94b5566[m feat(open): add default profile server.
+* [35m|[m [33meb2e8a7[m Update OpenApiConfiguration.java
+* [35m|[m [33m2f75efa[m Update OpenApiConfiguration.java
+* [35m|[m [33m3385066[m feat(open-api): added prod open api server.
+* [35m|[m   [33m1db0903[m Merge pull request #9 from upc-pre-20241-si729-wx55-eabmodel/feature/deploy
+[1;32m|[m[1;33m\[m [35m\[m  
+[1;32m|[m * [35m|[m [33m8d0d11f[m feat(deploy): implemented compile project from maven.
+[1;32m|[m * [35m|[m [33mceeb685[m feat(deploy): change to prod.
+* [1;33m|[m [35m|[m   [33ma3e9b08[m Merge pull request #8 from upc-pre-20241-si729-wx55-eabmodel/feature/iam-fix
+[1;33m|[m[1;35m\[m [1;33m\[m [35m\[m  
+[1;33m|[m [1;35m|[m[1;33m/[m [35m/[m  
+[1;33m|[m[1;33m/[m[1;35m|[m [35m|[m   
+[1;33m|[m * [35m|[m [33m717f4a2[m feat(iam): added roles, sign up.
+[1;33m|[m * [35m|[m [33mcebe428[m feat(iam): added refresh token path, to retrieve user session.
+[1;33m|[m[1;33m/[m [35m/[m  
+* [35m|[m [33m3a78bdf[m feat(docker): fix docker sql file.
+* [35m|[m [33mdd8574a[m feat(docker): reset to dev env. xd
+* [35m|[m [33me5514f6[m feat: change port.
+* [35m|[m [33mdba59c8[m feat: added target.
+* [35m|[m [33ma244c6d[m feat:  change to prod.
+* [35m|[m [33m345a51b[m feat: added cors support.
+* [35m|[m [33mab79ebb[m feat: added exception handlers.
+* [35m|[m [33m8159e03[m feat(deploy): added dev and prod properties.
+* [35m|[m [33mf44a42b[m feat(deploy): upload docker compose files.
+* [35m|[m [33m3288114[m feat(iam): added external user acl.
+* [35m|[m   [33m38a6d0b[m Merge pull request #7 from upc-pre-20241-si729-wx55-eabmodel/feature/employees-manager
+[1;36m|[m[31m\[m [35m\[m  
+[1;36m|[m * [35m|[m [33m87a1753[m fix(Employee):Rename repositories in infrastructure layer
+* [31m|[m [35m|[m [33m2348326[m refactor: relocated packages.
+* [31m|[m [35m|[m [33m0661013[m feat(jwt): added jwt secret.
+* [31m|[m [35m|[m [33m0a4bee3[m fix(iam): pom.xml dependencies.
+* [31m|[m [35m|[m   [33m648031b[m Merge pull request #6 from upc-pre-20241-si729-wx55-eabmodel/feature/ia-manager
+[32m|[m[33m\[m [31m\[m [35m\[m  
+[32m|[m * [31m\[m [35m\[m   [33m27dcb73[m Merge branch 'develop' into feature/ia-manager
+[32m|[m [34m|[m[32m\[m [31m\[m [35m\[m  
+[32m|[m [34m|[m[32m/[m [31m/[m [35m/[m  
+[32m|[m[32m/[m[34m|[m [31m|[m [35m|[m   
+* [34m|[m [31m|[m [35m|[m [33me8efa93[m feat: added mysql compose connection.
+* [34m|[m [31m|[m [35m|[m [33mdd4582f[m fix(employee): fix imports.
+* [34m|[m [31m|[m [35m|[m [33mcffb763[m fix(employee): fix id conflicts.
+* [34m|[m [31m|[m [35m|[m [33m3e7c05f[m fix(message): merge to acl.
+* [34m|[m [31m|[m [35m|[m [33m2b14bd3[m fix(message): added override attribute.
+* [34m|[m [31m|[m [35m|[m [33m3a472d8[m fix(profile): moved external profile service to shared.
+* [34m|[m [31m|[m [35m|[m [33m7f5e142[m fix(task): fix task mapping controller.
+* [34m|[m [31m|[m [35m|[m [33ma63f891[m feat(docker): added compose to pom.xml
+* [34m|[m [31m|[m [35m|[m [33md423af0[m feat(docker): added mysql docker compose.yaml.
+* [34m|[m [31m|[m [35m|[m   [33m4fe78f4[m Merge pull request #5 from upc-pre-20241-si729-wx55-eabmodel/feature/employees-manager
+[36m|[m[1;31m\[m [34m\[m [31m\[m [35m\[m  
+[36m|[m * [34m\[m [31m\[m [35m\[m   [33me6281fd[m Merge branch 'develop' into feature/employees-manager
+[36m|[m [31m|[m[36m\[m [34m\[m [31m\[m [35m\[m  
+[36m|[m [31m|[m[36m/[m [34m/[m [31m/[m [35m/[m  
+[36m|[m[36m/[m[31m|[m [34m|[m [31m/[m [35m/[m   
+[36m|[m [31m|[m [34m|[m[31m/[m [35m/[m    
+[36m|[m [31m|[m[31m/[m[34m|[m [35m|[m     
+* [31m|[m [34m|[m [35m|[m   [33ma96f2e1[m Merge pull request #4 from upc-pre-20241-si729-wx55-eabmodel/feature/rooms-management
+[1;34m|[m[1;35m\[m [31m\[m [34m\[m [35m\[m  
+[1;34m|[m * [31m|[m [34m|[m [35m|[m [33mdd73573[m feat(Accommodation-Room): minor fixes
+[1;34m|[m * [31m|[m [34m|[m [35m|[m [33m9a4ea37[m Fix(Accomodation): minor changes
+[1;34m|[m * [31m|[m [34m|[m [35m|[m [33m5c5435b[m feat(Accommodation-Room): minor fixes
+[1;34m|[m * [31m|[m [34m|[m [35m|[m [33md61182e[m feat(Accommodation-Room-Controller) added PutMapping and DeleteMapping By Id
+[1;34m|[m * [31m|[m [34m|[m [35m|[m [33m62fde77[m feat(Accommodation-Room-Repository) added exist byRoomNumber & AndIdIsNot
+[1;34m|[m * [31m|[m [34m|[m [35m|[m [33m7036731[m feat(Accommodation-Room-Command-service-impl): added handle UpdateRoom command and handle deleteRoomCommand
+[1;34m|[m * [31m|[m [34m|[m [35m|[m [33m0181620[m feat(Accommodation-Room-Command): added handle UpdateRoom command and handle deleteRoomCommand
+[1;34m|[m * [31m|[m [34m|[m [35m|[m [33md9ed4b9[m feat(Accommodation-Room-Command): added Delete Room Command
+[1;34m|[m * [31m|[m [34m|[m [35m|[m [33m4a02588[m feat(Accommodation-Room-Resource): added update Room Resource
+[1;34m|[m * [31m|[m [34m|[m [35m|[m [33m2058a6d[m feat(Accommodation-Room- command): added update Room command
+[1;34m|[m * [31m|[m [34m|[m [35m|[m [33m1f70cb1[m feat(Accommodation-Room): added date initialDate and finalDate, roomNumber and update information
+[1;34m|[m * [31m|[m [34m|[m [35m|[m [33m95ad01a[m feat(Accommodation-Room-Reservation): added room reservation date initialDate and finalDate
+[1;34m|[m * [31m|[m [34m|[m [35m|[m [33m034c12a[m feat(Accommodation-Room-Resources): added room Number, reservation
+[1;34m|[m * [31m|[m [34m|[m [35m|[m [33ma5476df[m feat(Accommodation-Room-Resources): added room Number, reservation
+[1;34m|[m * [31m|[m [34m|[m [35m|[m [33me1df130[m feat(Accommodation-Create-Room-Command): added room Number, date initialDate and finalDate
+[1;34m|[m * [31m|[m [34m|[m [35m|[m [33mde47d03[m fix(rooms): JPA with enums.
+[1;34m|[m * [31m|[m [34m|[m [35m|[m [33m74fb78a[m feat(Accommodation-Controller): added R

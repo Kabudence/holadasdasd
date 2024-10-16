@@ -68,9 +68,16 @@ public class IamContextFacade {
     public Long fetchUserIdByUsername(String username) {
         var getUserByUsernameQuery = new GetUserByUsernameQuery(username);
         var result = userQueryService.handle(getUserByUsernameQuery);
-        if (result.isEmpty()) return 0L;
+
+        if (result.isEmpty()) {
+            throw new IllegalArgumentException("No se encontró el usuario con el username: " + username);
+        }
+
+        System.out.println("ID de usuario encontrado: " + result.get().getId());
         return result.get().getId();
     }
+
+
 
     /**
      * Fetches the username of the user with the given id.
