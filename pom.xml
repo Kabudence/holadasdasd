@@ -14,7 +14,7 @@
     <name>inncontrol-backend</name>
     <description>inncontrol-backend</description>
     <properties>
-        <java.version>21</java.version>
+        <java.version>17</java.version> <!-- Cambiado a 17 para que sea compatible con Render -->
     </properties>
     <dependencies>
         <dependency>
